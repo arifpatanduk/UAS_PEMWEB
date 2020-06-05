@@ -1,6 +1,6 @@
 <?php
 
-$conn = mysqli_connect('localhost', 'root', '', 'perpus');
+require "../koneksi.php";
 
 function query($query)
 {

@@ -1,4 +1,6 @@
 <?php
+
+require "../koneksi.php";
 require "function.php";
 
 $nama = mysqli_query($conn, "SELECT * FROM anggota");

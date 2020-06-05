@@ -1,4 +1,6 @@
 <?php
+
+require "../koneksi.php";
 require "function.php";
 
 if (isset($_POST['kategori'])) {
