@@ -12,7 +12,7 @@ $dataanggota = mysqli_query($conn, "SELECT * FROM anggota");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Anggota</title>
 </head>
 
 <body>
@@ -39,8 +39,8 @@ $dataanggota = mysqli_query($conn, "SELECT * FROM anggota");
                     <td><?= $row['pekerjaan_anggota']; ?></td>
                     <td><?= $row['no_telp_anggota']; ?></td>
                     <td><?= $row['alamat_anggota']; ?></td>
-                    <td><?=  "<a href=edit.php?id=".$row['id_anggota'].">Edit</a>";?></td>
-                    <td><?=  "<a href=hapus.php?id=".$row['id_anggota'].">Hapus</a>";?></td>   
+                    <td><?=  "<a href=update_anggota.php?id=".$row['id_anggota'].">Edit</a>";?></td>
+                    <td><?=  "<a href=hapus_anggota.php?id=".$row['id_anggota'].">Hapus</a>";?></td>   
                     <td><?=  "<a href=cetak_anggota.php?id=".$row['id_anggota'].">Cetak Kartu</a>";?></td>                 
                 </tr>
             <?php endwhile; ?>
