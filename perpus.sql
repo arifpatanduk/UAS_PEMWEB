@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 05, 2020 at 09:17 AM
--- Server version: 10.1.38-MariaDB
--- PHP Version: 7.3.2
+-- Generation Time: Jun 05, 2020 at 03:32 PM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -43,7 +43,9 @@ CREATE TABLE `anggota` (
 --
 
 INSERT INTO `anggota` (`id_anggota`, `kode_anggota`, `nama_anggota`, `jk_anggota`, `pekerjaan_anggota`, `no_telp_anggota`, `alamat_anggota`) VALUES
-(1, '1', 'arif', 'L', 'mahasiswa', '123', 'toraja');
+(1, '1', 'arif', 'L', 'mahasiswa', '123', 'toraja'),
+(2, '2', 'Bintang', 'L', 'Mahasiswa', '085111222666', 'Surakarta'),
+(4, '4', 'Yosef', 'L', 'Big Boss', '085123321456', 'klaten');
 
 -- --------------------------------------------------------
 
@@ -57,27 +59,28 @@ CREATE TABLE `buku` (
   `kategori` varchar(50) NOT NULL,
   `penulis` varchar(40) NOT NULL,
   `penerbit` varchar(40) NOT NULL,
-  `stok` int(11) NOT NULL
+  `stok` int(11) NOT NULL,
+  `gambar` varchar(50) NOT NULL DEFAULT 'default.jpg'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `buku`
 --
 
-INSERT INTO `buku` (`idbuku`, `judulbuku`, `kategori`, `penulis`, `penerbit`, `stok`) VALUES
-('BK001', 'Belajar PHP', 'Ilmu Komputer', 'Candra', 'Media Baca', 5),
-('BK002', 'Belajar HTML', 'Ilmu Komputer', 'Rahmat Hakim', 'Media Baca', 5),
-('BK003', 'Kumpulan Puisi', 'Karya Sastra', 'Bejo', 'Media Kita', 3),
-('BK004', 'Sejarah Islam', 'Ilmu Agama', 'Sutejo', 'Media Kita', 3),
-('BK005', 'Pintar CSS', 'Ilmu Komputer', 'Anton', 'Graha Buku', 3),
-('BK006', 'Kumpulan Cerpen', 'Karya Sastra', 'Rudi', 'Media Aksara', 2),
-('BK007', 'Keamanan Data', 'Ilmu Komputer', 'Nusron', 'Media Cipta', 2),
-('BK008', 'Dasar-Dasar Database', 'Ilmu Komputer', 'Andi', 'Graha Media', 2),
-('BK009', 'Kumpulan Cerpen 2', 'Karya Sastra', 'Sutejo', 'Media Cipta', 2),
-('BK010', 'Peradaban Islam', 'Ilmu Agama', 'Aminnudin', 'Media Baca', 2),
-('BK011', 'Kumpulan Cerpen 3', 'Karya Sastra', 'Rudi', 'Media Baca', 6),
-('BK012', 'Teknologi Informasi', 'Ilmu Komputer', 'Andi A', 'Media Baca', 6),
-('BK013', 'Dermaga Biru', 'Karya Sastra', 'Sutejo', 'Media Cipta', 6);
+INSERT INTO `buku` (`idbuku`, `judulbuku`, `kategori`, `penulis`, `penerbit`, `stok`, `gambar`) VALUES
+('BK001', 'Belajar PHP', 'Ilmu Komputer', 'Candra', 'Media Baca', 5, 'default.jpg'),
+('BK002', 'Belajar HTML', 'Ilmu Komputer', 'Rahmat Hakim', 'Media Baca', 5, 'default.jpg'),
+('BK003', 'Kumpulan Puisi', 'Karya Sastra', 'Bejo', 'Media Kita', 3, 'default.jpg'),
+('BK004', 'Sejarah Islam', 'Ilmu Agama', 'Sutejo', 'Media Kita', 3, 'default.jpg'),
+('BK005', 'Pintar CSS', 'Ilmu Komputer', 'Anton', 'Graha Buku', 3, 'default.jpg'),
+('BK006', 'Kumpulan Cerpen', 'Karya Sastra', 'Rudi', 'Media Aksara', 2, 'default.jpg'),
+('BK007', 'Keamanan Data', 'Ilmu Komputer', 'Nusron', 'Media Cipta', 2, 'default.jpg'),
+('BK008', 'Dasar-Dasar Database', 'Ilmu Komputer', 'Andi', 'Graha Media', 2, 'default.jpg'),
+('BK009', 'Kumpulan Cerpen 2', 'Karya Sastra', 'Sutejo', 'Media Cipta', 2, 'default.jpg'),
+('BK010', 'Peradaban Islam', 'Ilmu Agama', 'Aminnudin', 'Media Baca', 2, 'default.jpg'),
+('BK011', 'Kumpulan Cerpen 3', 'Karya Sastra', 'Rudi', 'Media Baca', 6, 'default.jpg'),
+('BK012', 'Teknologi Informasi', 'Ilmu Komputer', 'Andi A', 'Media Baca', 6, 'default.jpg'),
+('BK013', 'Dermaga Biru', 'Karya Sastra', 'Sutejo', 'Media Cipta', 6, 'default.jpg');
 
 -- --------------------------------------------------------
 
@@ -206,7 +209,7 @@ ALTER TABLE `rak`
 -- AUTO_INCREMENT for table `anggota`
 --
 ALTER TABLE `anggota`
-  MODIFY `id_anggota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_anggota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `peminjaman`
