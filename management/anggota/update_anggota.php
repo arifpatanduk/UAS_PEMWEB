@@ -21,22 +21,13 @@ if (isset($_POST['submit'])) {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update Anggota</title>
-</head>
-
 <body>
     <h2>Update Anggota</h2>
     <form action="" method="POST">
         <?php while ($row = mysqli_fetch_assoc($dataanggota)) : ?>
-        <input type="hidden" name="id" value="<?= $row['id_anggota']; ?>">
+        <input type="hidden" name="id" value="<?= $row['id_anggota']; ?>" >
         <label>Kode Anggota</label>
-        <input type="text" name="kode" value="<?= $row['kode_anggota']; ?>" required disabled>
+        <input type="text" name="kode" value="<?= $row['id_anggota']; ?>" required disabled>
         <br>
         <label>Nama Anggota</label>
         <input type="text" name="nama" value="<?= $row['nama_anggota']; ?>" required>

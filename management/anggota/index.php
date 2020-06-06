@@ -33,7 +33,7 @@ $dataanggota = mysqli_query($conn, "SELECT * FROM anggota");
         <tbody>
             <?php while ($row = mysqli_fetch_assoc($dataanggota)) : ?>
                 <tr>
-                    <td><?= $row['kode_anggota']; ?></td>
+                    <td><?= $row['id_anggota']; ?></td>
                     <td><?= $row['nama_anggota']; ?></td>
                     <td><?= $row['jk_anggota']; ?></td>
                     <td><?= $row['pekerjaan_anggota']; ?></td>

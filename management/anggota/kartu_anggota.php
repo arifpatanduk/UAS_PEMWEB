@@ -34,7 +34,7 @@ $dataanggota = mysqli_query($conn, "SELECT * FROM anggota WHERE id_anggota='$id'
       <td width="65" rowspan="6" align="center">Foto</td>
       <td width="110" height="10">Kode Anggota</td>
       <td width="10"  height="10" align="center"> : </td>
-      <td width="110" height="10"><?= $row['kode_anggota']; ?></td>
+      <td width="110" height="10"><?= $row['id_anggota']; ?></td>
     </tr>
     <tr>
       <td width="110" height="10">Nama Anggota</td>

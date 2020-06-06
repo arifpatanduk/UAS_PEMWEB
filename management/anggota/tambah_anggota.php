@@ -29,9 +29,6 @@ if (isset($_POST['submit'])) {
 <body>
     <h2>Tambah Anggota</h2>
     <form action="" method="POST">
-    	<label>Kode Anggota</label>
-    	<input type="text" name="kode" required>
-    	<br>
     	<label>Nama Anggota</label>
     	<input type="text" name="nama" required>
     	<br>
