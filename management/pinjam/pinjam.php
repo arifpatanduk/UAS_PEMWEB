@@ -31,11 +31,11 @@ if (isset($_POST['submit'])) {
     <!-- AJAX CDN -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    <title>Document</title>
+    <title>Transaksi Peminjaman</title>
 </head>
 
 <body>
-    <h2>Transaksi Peminjaman</h2>
+    <h2>Transaksi Peminjaman Buku</h2>
     <form action="" method="POST">
         <ul>
             <li>
