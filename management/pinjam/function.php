@@ -18,17 +18,18 @@ function pinjam($data)
 {
     global $conn;
 
-    $nama = $data['nama'];
-    $id_anggota = mysqli_query($conn, "SELECT id_anggota FROM anggota WHERE nama_anggota = '$nama' ");
+
+    $id_anggota = $data['id_anggota'];
 
     $judul = $data['judul'];
-    $idbuku = mysqli_query($conn, "SELECT idbuku FROM buku WHERE judulbuku = '$judul' ");
+    $get_idbuku = query("SELECT idbuku FROM buku WHERE judulbuku='$judul' ");
+    $idbuku = $get_idbuku['idbuku'];
 
     $tglpinjam = $data['tglpinjam'];
     $jatuhtempo = $data['jatuhtempo'];
 
     $query = "INSERT INTO peminjaman VALUES 
-    ('', now(), $jatuhtempo, '$idbuku', $id_anggota, 1)";
+    ('', now(), ADDDATE(now(), INTERVAL 7 day), '$idbuku', $id_anggota, 1)";
 
     mysqli_query($conn, $query);
 

@@ -3,7 +3,7 @@
 require "../koneksi.php";
 require "function.php";
 
-$nama = mysqli_query($conn, "SELECT * FROM anggota");
+$id = mysqli_query($conn, "SELECT id_anggota FROM anggota");
 $kategori = mysqli_query($conn, "SELECT kategori FROM buku GROUP BY kategori");
 
 if (isset($_POST['submit'])) {
@@ -15,7 +15,8 @@ if (isset($_POST['submit'])) {
     } else {
         echo "
         <script>Gagal</script>";
-        exit;
+        echo mysqli_error($conn);
+        // exit;
     }
 }
 ?>
@@ -38,13 +39,19 @@ if (isset($_POST['submit'])) {
     <form action="" method="POST">
         <ul>
             <li>
+                <label for="id_anggota"> Kode Anggota :</label>
+                <select name="id_anggota" id="id_anggota">
+                    <option value="show-all" selected="selected">-- ID Anggota --</option>
+                    <?php while ($row = mysqli_fetch_assoc($id)) : ?>
+                        <option value="<?= $row['id_anggota']; ?>"><?= $row['id_anggota']; ?></option>
+                    <?php endwhile; ?>
+                </select>
+            </li>
+
+            <li>
                 <label for="nama">Nama Anggota :</label>
                 <select name="nama" id="nama">
-                    <option value="selected">-- Pilih Nama Anggota --</option>
-
-                    <?php while ($row = mysqli_fetch_assoc($nama)) : ?>
-                        <option value="<?= $row['id_anggota']; ?>"><?= $row['nama_anggota']; ?></option>
-                    <?php endwhile; ?>
+                    <option value="show-all" selected="selected">-- Nama Anggota --</option>
 
                 </select>
             </li>
@@ -63,7 +70,6 @@ if (isset($_POST['submit'])) {
                 <label for="judul">Judul Buku :</label>
                 <select name="judul" id="judul">
                     <option value="selected">-- Pilih Judul Buku --</option>
-
                 </select>
             </li>
             <li>
@@ -75,19 +81,33 @@ if (isset($_POST['submit'])) {
                 <input type="date" name="jatuhtempo" id="jatuhtempo" value="<?= date('Y-m-d', time() + (60 * 60 * 24 * 7)); ?>" readonly>
             </li>
             <li>
-                <button type="button" name="submit">Submit</button>
+                <button type="submit" name="submit">Submit</button>
             </li>
         </ul>
     </form>
 
     <script>
+        $("#id_anggota").change(function() {
+            var id_anggota = $("#id_anggota").val();
+
+            $.ajax({
+                type: "POST",
+                dataType: "html",
+                url: "get_data.php",
+                data: "id_anggota=" + id_anggota,
+                success: function(data) {
+                    $("#nama").html(data);
+                }
+            });
+        });
+
         $("#kategori").change(function() {
             var kategori = $("#kategori").val();
 
             $.ajax({
                 type: "POST",
                 dataType: "html",
-                url: "get_buku.php",
+                url: "get_data.php",
                 data: "kategori=" + kategori,
                 success: function(data) {
                     $("#judul").html(data);
