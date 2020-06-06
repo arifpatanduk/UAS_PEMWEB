@@ -41,7 +41,7 @@ $dataanggota = mysqli_query($conn, "SELECT * FROM anggota");
                     <td><?= $row['alamat_anggota']; ?></td>
                     <td><?=  "<a href=update_anggota.php?id=".$row['id_anggota'].">Edit</a>";?></td>
                     <td><?=  "<a href=hapus_anggota.php?id=".$row['id_anggota'].">Hapus</a>";?></td>   
-                    <td><?=  "<a href=cetak_anggota.php?id=".$row['id_anggota'].">Cetak Kartu</a>";?></td>                 
+                    <td><?=  "<a href=kartu_anggota.php?id=".$row['id_anggota'].">Cetak Kartu</a>";?></td>                 
                 </tr>
             <?php endwhile; ?>
             <tr>
