@@ -38,40 +38,33 @@ if (isset($_POST['submit'])) {
     <h2>Transaksi Peminjaman Buku</h2>
     <form action="" method="POST">
         <ul>
+            <!-- buku -->
             <li>
-                <label for="id_anggota"> Kode Anggota :</label>
-                <select name="id_anggota" id="id_anggota">
-                    <option value="show-all" selected="selected">-- ID Anggota --</option>
-                    <?php while ($row = mysqli_fetch_assoc($id)) : ?>
-                        <option value="<?= $row['id_anggota']; ?>"><?= $row['id_anggota']; ?></option>
-                    <?php endwhile; ?>
-                </select>
+                <label for="idbuku">Kode Buku :</label>
+                <input type="text" name="idbuku" id="idbuku" required>
+            </li>
+
+            <li>
+                <label for="kategori">Kategori Buku :</label>
+                <input type="text" name="kategori" id="kategori" readonly required>
+            </li>
+            <li>
+                <label for="judulbuku">Judul Buku :</label>
+                <input type="text" name="judulbuku" id="judulbuku" readonly required>
+            </li>
+
+            <!-- anggota/peminjam -->
+            <li>
+                <label for="id_anggota"> ID Anggota :</label>
+                <input type="text" name="id_anggota" id="id_anggota" required>
             </li>
 
             <li>
                 <label for="nama">Nama Anggota :</label>
-                <select name="nama" id="nama">
-                    <option value="show-all" selected="selected">-- Nama Anggota --</option>
-
-                </select>
+                <input type="text" name="nama" id="nama" readonly required>
             </li>
-            <li>
-                <label for="kategori">Kategori Buku :</label>
-                <select name="kategori" id="kategori">
-                    <option value="show-all" selected="selected">-- Pilih Kategori Buku --</option>
 
-                    <?php while ($row = mysqli_fetch_assoc($kategori)) : ?>
-                        <option value="<?= $row['kategori']; ?>"><?= $row['kategori']; ?></option>
-                    <?php endwhile; ?>
-
-                </select>
-            </li>
-            <li>
-                <label for="judul">Judul Buku :</label>
-                <select name="judul" id="judul">
-                    <option value="selected">-- Pilih Judul Buku --</option>
-                </select>
-            </li>
+            <!-- tanggal -->
             <li>
                 <label for="tglpinjam">Tanggal Pinjam :</label>
                 <input type="date" name="tglpinjam" id="tglpinjam" value="<?= date("Y-m-d"); ?>" readonly>
@@ -87,33 +80,58 @@ if (isset($_POST['submit'])) {
     </form>
 
     <script>
-        $("#id_anggota").change(function() {
-            var id_anggota = $("#id_anggota").val();
+        // AUTO ISI BUKU
+        $(function() {
+            $("#idbuku").change(function() {
+                var idbuku = $("#idbuku").val();
 
-            $.ajax({
-                type: "POST",
-                dataType: "html",
-                url: "get_data.php",
-                data: "id_anggota=" + id_anggota,
-                success: function(data) {
-                    $("#nama").html(data);
-                }
-            });
-        });
+                $.ajax({
+                    url: 'get_data.php',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        'idbuku': idbuku
+                    },
+                    success: function(buku) {
+                        $("#kategori").val(buku['kategori']);
+                        $("#judulbuku").val(buku['judulbuku']);
+                    }
+                })
+            })
+        })
 
-        $("#kategori").change(function() {
-            var kategori = $("#kategori").val();
+        // AUTO ISI ANGGOTA
+        $(function() {
+            $("#id_anggota").change(function() {
+                var id_anggota = $("#id_anggota").val();
 
-            $.ajax({
-                type: "POST",
-                dataType: "html",
-                url: "get_data.php",
-                data: "kategori=" + kategori,
-                success: function(data) {
-                    $("#judul").html(data);
-                }
-            });
-        });
+                $.ajax({
+                    url: 'get_data.php',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        'id_anggota': id_anggota
+                    },
+                    success: function(anggota) {
+                        $("#nama").val(anggota['nama_anggota']);
+                    }
+                })
+            })
+        })
+
+        // $("#id_anggota").change(function() {
+        //     var id_anggota = $("#id_anggota").val();
+
+        //     $.ajax({
+        //         type: "POST",
+        //         dataType: "html",
+        //         url: "get_data.php",
+        //         data: "id_anggota=" + id_anggota,
+        //         success: function(data) {
+        //             $("#nama").html(data);
+        //         }
+        //     });
+        // });
     </script>
 
 </body>

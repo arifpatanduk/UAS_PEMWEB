@@ -1,7 +1,7 @@
 <?php
 
 require "../koneksi.php";
-require "function.php";
+require "../pinjam/function.php";
 
 $id_peminjaman = $_GET['id'];
 

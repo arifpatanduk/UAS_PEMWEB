@@ -18,11 +18,12 @@ function pinjam($data)
 {
     global $conn;
 
-    $id_anggota = $data['id_anggota'];
+    $id_anggota = htmlspecialchars($data['id_anggota']);
+    $idbuku = htmlspecialchars($data['idbuku']);
 
-    $judul = $data['judul'];
-    $get_idbuku = query("SELECT idbuku FROM buku WHERE judulbuku='$judul' ");
-    $idbuku = $get_idbuku['idbuku'];
+    // kurangi stok buku
+    $stok = "UPDATE buku SET stok=stok-1 WHERE idbuku='$idbuku' ";
+    mysqli_query($conn, $stok);
 
     $query = "INSERT INTO peminjaman VALUES 
     ('', now(), ADDDATE(now(), INTERVAL 7 day), '$idbuku', $id_anggota, 1)";
@@ -36,7 +37,7 @@ function kembali($id_peminjaman)
 {
     global $conn;
 
-    // ambil data dari table pengembalian
+    // ambil data dari table peminjaman
     $data = query("SELECT * FROM peminjaman WHERE id_peminjaman=$id_peminjaman");
     $tgl_pinjam = $data['tanggal_pinjam'];
     $jatuh_tempo = $data['jatuh_tempo'];
@@ -58,6 +59,10 @@ function kembali($id_peminjaman)
     mysqli_query($conn, "INSERT INTO pengembalian VALUES 
     ('', '$tgl_pinjam', '$jatuh_tempo', now(), $denda, '$idbuku', $id_anggota, $id_petugas) 
     ");
+
+    // update stok buku
+    $stok = "UPDATE buku SET stok=stok+1 WHERE idbuku='$idbuku' ";
+    mysqli_query($conn, $stok);
 
     return mysqli_affected_rows($conn);
 }

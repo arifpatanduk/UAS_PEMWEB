@@ -45,7 +45,7 @@ AND peminjaman.idbuku=buku.idbuku"
                     <td><?= $row['tanggal_pinjam']; ?></td>
                     <td><?= $row['jatuh_tempo']; ?></td>
                     <td>
-                        <a href="kembali.php?id=<?= $row['id_peminjaman']; ?>" onclick="return confirm('Peminjaman dikembalikan?');">
+                        <a href="../kembali/kembali.php?id=<?= $row['id_peminjaman']; ?>" onclick="return confirm('Peminjaman dikembalikan?');">
                             <button> Kembali </button>
                         </a> |
                         <a href="perpanjang.php?id=<?= $row['id_peminjaman']; ?> ">
