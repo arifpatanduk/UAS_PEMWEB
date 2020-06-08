@@ -1,22 +1,20 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
--- https://www.phpmyadmin.net/
+-- version 4.3.11
+-- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 06, 2020 at 06:42 PM
--- Server version: 10.1.38-MariaDB
--- PHP Version: 7.3.2
+-- Generation Time: Jun 08, 2020 at 02:49 PM
+-- Server version: 5.6.24
+-- PHP Version: 5.6.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `perpus`
@@ -28,14 +26,14 @@ SET time_zone = "+00:00";
 -- Table structure for table `anggota`
 --
 
-CREATE TABLE `anggota` (
+CREATE TABLE IF NOT EXISTS `anggota` (
   `id_anggota` int(11) NOT NULL,
   `nama_anggota` varchar(100) NOT NULL,
   `jk_anggota` char(1) NOT NULL,
   `pekerjaan_anggota` varchar(255) NOT NULL,
   `no_telp_anggota` varchar(13) NOT NULL,
   `alamat_anggota` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `anggota`
@@ -53,7 +51,7 @@ INSERT INTO `anggota` (`id_anggota`, `nama_anggota`, `jk_anggota`, `pekerjaan_an
 -- Table structure for table `buku`
 --
 
-CREATE TABLE `buku` (
+CREATE TABLE IF NOT EXISTS `buku` (
   `idbuku` varchar(5) NOT NULL,
   `judulbuku` varchar(50) NOT NULL,
   `kategori` varchar(50) NOT NULL,
@@ -80,7 +78,9 @@ INSERT INTO `buku` (`idbuku`, `judulbuku`, `kategori`, `penulis`, `penerbit`, `s
 ('BK010', 'Peradaban Islam', 'Ilmu Agama', 'Aminnudin', 'Media Baca', 2, 'default.png'),
 ('BK011', 'Kumpulan Cerpen 3', 'Karya Sastra', 'Rudi', 'Media Baca', 6, 'default.png'),
 ('BK012', 'Teknologi Informasi', 'Ilmu Komputer', 'Andi A', 'Media Baca', 6, 'default.png'),
-('BK013', 'Dermaga Biru', 'Karya Sastra', 'Sutejo', 'Media Cipta', 6, 'default.png');
+('BK013', 'Dermaga Biru', 'Karya Sastra', 'Sutejo', 'Media Cipta', 6, 'default.png'),
+('BK014', 'Ini judul1', 'Ilmu Komputer1', 'Penulis1', 'Penerbit1', 21, '954910.jpg'),
+('BK015', 'Judul2', 'Kategori2', 'Penulis2', 'Penerbit2', 52, '724214.png');
 
 -- --------------------------------------------------------
 
@@ -88,14 +88,14 @@ INSERT INTO `buku` (`idbuku`, `judulbuku`, `kategori`, `penulis`, `penerbit`, `s
 -- Table structure for table `peminjaman`
 --
 
-CREATE TABLE `peminjaman` (
+CREATE TABLE IF NOT EXISTS `peminjaman` (
   `id_peminjaman` int(11) NOT NULL,
   `tanggal_pinjam` date NOT NULL,
   `jatuh_tempo` date NOT NULL,
   `idbuku` varchar(5) NOT NULL,
   `id_anggota` int(11) NOT NULL,
   `id_petugas` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `peminjaman`
@@ -111,7 +111,7 @@ INSERT INTO `peminjaman` (`id_peminjaman`, `tanggal_pinjam`, `jatuh_tempo`, `idb
 -- Table structure for table `pengembalian`
 --
 
-CREATE TABLE `pengembalian` (
+CREATE TABLE IF NOT EXISTS `pengembalian` (
   `id_pengembalian` int(11) NOT NULL,
   `tanggal_pinjam` date NOT NULL,
   `jatuh_tempo` date NOT NULL,
@@ -120,7 +120,7 @@ CREATE TABLE `pengembalian` (
   `idbuku` varchar(5) NOT NULL,
   `id_anggota` int(11) NOT NULL,
   `id_petugas` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pengembalian`
@@ -138,13 +138,13 @@ INSERT INTO `pengembalian` (`id_pengembalian`, `tanggal_pinjam`, `jatuh_tempo`, 
 -- Table structure for table `petugas`
 --
 
-CREATE TABLE `petugas` (
+CREATE TABLE IF NOT EXISTS `petugas` (
   `id_petugas` int(11) NOT NULL,
   `nama_petugas` varchar(50) NOT NULL,
   `jabatan_petugas` varchar(50) NOT NULL,
   `no_telp_petugas` char(13) NOT NULL,
   `alamat_petugas` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `petugas`
@@ -159,12 +159,31 @@ INSERT INTO `petugas` (`id_petugas`, `nama_petugas`, `jabatan_petugas`, `no_telp
 -- Table structure for table `rak`
 --
 
-CREATE TABLE `rak` (
+CREATE TABLE IF NOT EXISTS `rak` (
   `id_rak` int(11) NOT NULL,
   `nama_rak` varchar(50) NOT NULL,
   `lokasi_rak` varchar(50) NOT NULL,
   `idbuku` varchar(5) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `rak`
+--
+
+INSERT INTO `rak` (`id_rak`, `nama_rak`, `lokasi_rak`, `idbuku`) VALUES
+(1, '2', '2', 'BK001'),
+(2, '2', '2', 'BK002'),
+(3, '2', '2', 'BK003'),
+(4, '2', '2', 'BK004'),
+(5, '2', '2', 'BK005'),
+(6, '2', '2', 'BK006'),
+(7, '2', '2', 'BK007'),
+(8, '2', '2', 'BK008'),
+(9, '2', '2', 'BK009'),
+(10, '2', '2', 'BK010'),
+(11, '2', '2', 'BK011'),
+(12, '2', '2', 'BK012'),
+(13, '2', '2', 'BK013');
 
 --
 -- Indexes for dumped tables
@@ -186,19 +205,13 @@ ALTER TABLE `buku`
 -- Indexes for table `peminjaman`
 --
 ALTER TABLE `peminjaman`
-  ADD PRIMARY KEY (`id_peminjaman`),
-  ADD KEY `id_buku` (`idbuku`),
-  ADD KEY `id_anggota` (`id_anggota`),
-  ADD KEY `id_petugas` (`id_petugas`);
+  ADD PRIMARY KEY (`id_peminjaman`), ADD KEY `id_buku` (`idbuku`), ADD KEY `id_anggota` (`id_anggota`), ADD KEY `id_petugas` (`id_petugas`);
 
 --
 -- Indexes for table `pengembalian`
 --
 ALTER TABLE `pengembalian`
-  ADD PRIMARY KEY (`id_pengembalian`),
-  ADD KEY `id_petugas` (`id_petugas`),
-  ADD KEY `id_anggota` (`id_anggota`),
-  ADD KEY `id_buku` (`idbuku`);
+  ADD PRIMARY KEY (`id_pengembalian`), ADD KEY `id_petugas` (`id_petugas`), ADD KEY `id_anggota` (`id_anggota`), ADD KEY `id_buku` (`idbuku`);
 
 --
 -- Indexes for table `petugas`
@@ -210,8 +223,7 @@ ALTER TABLE `petugas`
 -- Indexes for table `rak`
 --
 ALTER TABLE `rak`
-  ADD PRIMARY KEY (`id_rak`),
-  ADD KEY `id_buku` (`idbuku`);
+  ADD PRIMARY KEY (`id_rak`), ADD KEY `id_buku` (`idbuku`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -221,32 +233,27 @@ ALTER TABLE `rak`
 -- AUTO_INCREMENT for table `anggota`
 --
 ALTER TABLE `anggota`
-  MODIFY `id_anggota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
+  MODIFY `id_anggota` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `peminjaman`
 --
 ALTER TABLE `peminjaman`
-  MODIFY `id_peminjaman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
+  MODIFY `id_peminjaman` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `pengembalian`
 --
 ALTER TABLE `pengembalian`
-  MODIFY `id_pengembalian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
+  MODIFY `id_pengembalian` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `petugas`
 --
 ALTER TABLE `petugas`
-  MODIFY `id_petugas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
+  MODIFY `id_petugas` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `rak`
 --
 ALTER TABLE `rak`
-  MODIFY `id_rak` int(11) NOT NULL AUTO_INCREMENT;
-
+  MODIFY `id_rak` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
 --
 -- Constraints for dumped tables
 --
@@ -255,24 +262,23 @@ ALTER TABLE `rak`
 -- Constraints for table `peminjaman`
 --
 ALTER TABLE `peminjaman`
-  ADD CONSTRAINT `buku_pinjam` FOREIGN KEY (`idbuku`) REFERENCES `buku` (`idbuku`),
-  ADD CONSTRAINT `peminjaman_ibfk_2` FOREIGN KEY (`id_petugas`) REFERENCES `petugas` (`id_petugas`),
-  ADD CONSTRAINT `peminjaman_ibfk_3` FOREIGN KEY (`id_anggota`) REFERENCES `anggota` (`id_anggota`);
+ADD CONSTRAINT `buku_pinjam` FOREIGN KEY (`idbuku`) REFERENCES `buku` (`idbuku`),
+ADD CONSTRAINT `peminjaman_ibfk_2` FOREIGN KEY (`id_petugas`) REFERENCES `petugas` (`id_petugas`),
+ADD CONSTRAINT `peminjaman_ibfk_3` FOREIGN KEY (`id_anggota`) REFERENCES `anggota` (`id_anggota`);
 
 --
 -- Constraints for table `pengembalian`
 --
 ALTER TABLE `pengembalian`
-  ADD CONSTRAINT `buku_kembali` FOREIGN KEY (`idbuku`) REFERENCES `buku` (`idbuku`),
-  ADD CONSTRAINT `pengembalian_ibfk_2` FOREIGN KEY (`id_petugas`) REFERENCES `petugas` (`id_petugas`),
-  ADD CONSTRAINT `pengembalian_ibfk_3` FOREIGN KEY (`id_anggota`) REFERENCES `anggota` (`id_anggota`);
+ADD CONSTRAINT `buku_kembali` FOREIGN KEY (`idbuku`) REFERENCES `buku` (`idbuku`),
+ADD CONSTRAINT `pengembalian_ibfk_2` FOREIGN KEY (`id_petugas`) REFERENCES `petugas` (`id_petugas`),
+ADD CONSTRAINT `pengembalian_ibfk_3` FOREIGN KEY (`id_anggota`) REFERENCES `anggota` (`id_anggota`);
 
 --
 -- Constraints for table `rak`
 --
 ALTER TABLE `rak`
-  ADD CONSTRAINT `buku_rak` FOREIGN KEY (`idbuku`) REFERENCES `buku` (`idbuku`);
-COMMIT;
+ADD CONSTRAINT `buku_rak` FOREIGN KEY (`idbuku`) REFERENCES `buku` (`idbuku`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
