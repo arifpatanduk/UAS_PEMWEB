@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 08, 2020 at 02:49 PM
+-- Generation Time: Jun 10, 2020 at 04:11 AM
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -164,26 +164,26 @@ CREATE TABLE IF NOT EXISTS `rak` (
   `nama_rak` varchar(50) NOT NULL,
   `lokasi_rak` varchar(50) NOT NULL,
   `idbuku` varchar(5) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `rak`
 --
 
 INSERT INTO `rak` (`id_rak`, `nama_rak`, `lokasi_rak`, `idbuku`) VALUES
-(1, '2', '2', 'BK001'),
-(2, '2', '2', 'BK002'),
-(3, '2', '2', 'BK003'),
-(4, '2', '2', 'BK004'),
-(5, '2', '2', 'BK005'),
-(6, '2', '2', 'BK006'),
-(7, '2', '2', 'BK007'),
-(8, '2', '2', 'BK008'),
-(9, '2', '2', 'BK009'),
-(10, '2', '2', 'BK010'),
-(11, '2', '2', 'BK011'),
-(12, '2', '2', 'BK012'),
-(13, '2', '2', 'BK013');
+(1, 'ABC', 'Lantai 1', 'BK001'),
+(2, 'DEF', 'Lantai 1', 'BK002'),
+(3, 'GHI', 'Lantai 1', 'BK003'),
+(4, 'JKL', 'Lantai 1', 'BK004'),
+(5, 'MNO', 'Lantai 1', 'BK005'),
+(6, 'PQR', 'Lantai 1', 'BK006'),
+(7, 'STU', 'Lantai 1', 'BK007'),
+(8, 'VWX', 'Lantai 1', 'BK008'),
+(9, 'YZ', 'Lantai 1', 'BK009'),
+(10, 'ABC', 'Lantai 2', 'BK010'),
+(11, 'DEF', 'Lantai 2', 'BK011'),
+(12, 'GHI', 'Lantai 2', 'BK012'),
+(13, 'JKL', 'Lantai 2', 'BK013');
 
 --
 -- Indexes for dumped tables
@@ -253,7 +253,7 @@ ALTER TABLE `petugas`
 -- AUTO_INCREMENT for table `rak`
 --
 ALTER TABLE `rak`
-  MODIFY `id_rak` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
+  MODIFY `id_rak` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 --
 -- Constraints for dumped tables
 --

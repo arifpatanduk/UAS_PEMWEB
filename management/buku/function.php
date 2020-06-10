@@ -122,7 +122,7 @@ function update($data)
     //mengecek gagal atau tidak
     $hasilA = mysqli_affected_rows($conn);
 
-    $update_rak  = "UPDATE rak SET nama_rak = '$nama_rak', lokasi_rak = '$lokasi' ";
+    $update_rak  = "UPDATE rak SET nama_rak = '$nama_rak', lokasi_rak = '$lokasi' WHERE idbuku = '$id' ";
     mysqli_query($conn, $update_rak);
     //mengecek gagal atau tidak
     $hasilB = mysqli_affected_rows($conn);

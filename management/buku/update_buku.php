@@ -57,7 +57,7 @@ if (isset($_POST['submit'])) {
 
         <br>
         <?php endwhile; ?>
-        <button type="submit" name="submit">Update Anggota</button>
+        <button type="submit" name="submit">Update Buku</button>
     </form>
 </body>
 
