@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 10, 2020 at 04:11 AM
+-- Generation Time: Jun 13, 2020 at 10:33 AM
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `anggota` (
   `pekerjaan_anggota` varchar(255) NOT NULL,
   `no_telp_anggota` varchar(13) NOT NULL,
   `alamat_anggota` varchar(100) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `anggota`
@@ -43,7 +43,8 @@ INSERT INTO `anggota` (`id_anggota`, `nama_anggota`, `jk_anggota`, `pekerjaan_an
 (1, 'Arif', 'L', 'Mahasiswa', '085111222333', 'Toraja'),
 (2, 'Bintang', 'L', 'Mahasiswa', '085111222666', 'Surakarta'),
 (4, 'Yosef', 'L', 'Mahasiswa', '085123321456', 'klaten'),
-(6, 'Ifan', 'P', 'Dosen', '12345', 'Indonesia');
+(6, 'Ifan', 'L', 'Dosen', '12345', 'Indonesia'),
+(7, 'Dandy', 'L', 'Mahasiswa', '085123321456', 'Mojosongo');
 
 -- --------------------------------------------------------
 
@@ -66,21 +67,20 @@ CREATE TABLE IF NOT EXISTS `buku` (
 --
 
 INSERT INTO `buku` (`idbuku`, `judulbuku`, `kategori`, `penulis`, `penerbit`, `stok`, `gambar`) VALUES
-('BK001', 'Belajar PHP', 'Ilmu Komputer', 'Candra', 'Media Baca', 5, 'default.png'),
+('BK001', 'Belajar PHP', 'Ilmu Komputer', 'Candra', 'Media Baca', 4, 'default.png'),
 ('BK002', 'Belajar HTML', 'Ilmu Komputer', 'Rahmat Hakim', 'Media Baca', 5, 'default.png'),
-('BK003', 'Kumpulan Puisi', 'Karya Sastra', 'Bejo', 'Media Kita', 3, 'default.png'),
+('BK003', 'Kumpulan Puisi', 'Karya Sastra', 'Bejo', 'Media Kita', 2, 'default.png'),
 ('BK004', 'Sejarah Islam', 'Ilmu Agama', 'Sutejo', 'Media Kita', 3, 'default.png'),
 ('BK005', 'Pintar CSS', 'Ilmu Komputer', 'Anton', 'Graha Buku', 3, 'default.png'),
 ('BK006', 'Kumpulan Cerpen', 'Karya Sastra', 'Rudi', 'Media Aksara', 2, 'default.png'),
 ('BK007', 'Keamanan Data', 'Ilmu Komputer', 'Nusron', 'Media Cipta', 2, 'default.png'),
 ('BK008', 'Dasar-Dasar Database', 'Ilmu Komputer', 'Andi', 'Graha Media', 2, 'default.png'),
-('BK009', 'Kumpulan Cerpen 2', 'Karya Sastra', 'Sutejo', 'Media Cipta', 2, 'default.png'),
+('BK009', 'Kumpulan Cerpen 2', 'Karya Sastra', 'Sutejo', 'Media Cipta', 3, 'default.png'),
 ('BK010', 'Peradaban Islam', 'Ilmu Agama', 'Aminnudin', 'Media Baca', 2, 'default.png'),
-('BK011', 'Kumpulan Cerpen 3', 'Karya Sastra', 'Rudi', 'Media Baca', 6, 'default.png'),
+('BK011', 'Kumpulan Cerpen 3', 'Karya Sastra', 'Rudi', 'Media Baca', 4, 'default.png'),
 ('BK012', 'Teknologi Informasi', 'Ilmu Komputer', 'Andi A', 'Media Baca', 6, 'default.png'),
-('BK013', 'Dermaga Biru', 'Karya Sastra', 'Sutejo', 'Media Cipta', 6, 'default.png'),
-('BK014', 'Ini judul1', 'Ilmu Komputer1', 'Penulis1', 'Penerbit1', 21, '954910.jpg'),
-('BK015', 'Judul2', 'Kategori2', 'Penulis2', 'Penerbit2', 52, '724214.png');
+('BK013', 'Dermaga Biru', 'Karya Sastra', 'Sutejo', 'Media Cipta', 7, 'default.png'),
+('BK014', 'Ini judul', 'Ilmu Komputer', 'Penulis', 'Penerbit', 4, 'default.png');
 
 -- --------------------------------------------------------
 
@@ -95,15 +95,18 @@ CREATE TABLE IF NOT EXISTS `peminjaman` (
   `idbuku` varchar(5) NOT NULL,
   `id_anggota` int(11) NOT NULL,
   `id_petugas` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `peminjaman`
 --
 
 INSERT INTO `peminjaman` (`id_peminjaman`, `tanggal_pinjam`, `jatuh_tempo`, `idbuku`, `id_anggota`, `id_petugas`) VALUES
-(10, '2020-06-06', '2020-06-20', 'BK009', 2, 1),
-(11, '2020-06-06', '2020-06-13', 'BK013', 4, 1);
+(12, '2020-06-12', '2020-06-19', 'BK001', 2, 1),
+(13, '2020-06-12', '2020-06-19', 'BK011', 1, 1),
+(14, '2020-06-13', '2020-06-20', 'BK011', 4, 1),
+(15, '2020-06-13', '2020-06-20', 'BK014', 7, 1),
+(17, '2020-06-13', '2020-06-20', 'BK003', 4, 1);
 
 -- --------------------------------------------------------
 
@@ -120,17 +123,18 @@ CREATE TABLE IF NOT EXISTS `pengembalian` (
   `idbuku` varchar(5) NOT NULL,
   `id_anggota` int(11) NOT NULL,
   `id_petugas` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pengembalian`
 --
 
 INSERT INTO `pengembalian` (`id_pengembalian`, `tanggal_pinjam`, `jatuh_tempo`, `tanggal_pengembalian`, `denda`, `idbuku`, `id_anggota`, `id_petugas`) VALUES
-(4, '0000-00-00', '0000-00-00', '2020-06-06', 0, 'BK012', 4, 1),
 (5, '2020-06-06', '2020-06-13', '2020-06-06', 0, 'BK004', 2, 1),
 (6, '2020-06-06', '2020-06-13', '2020-06-06', 0, 'BK003', 1, 1),
-(7, '2020-06-06', '2020-06-13', '2020-06-06', 0, 'BK005', 6, 1);
+(7, '2020-06-06', '2020-06-13', '2020-06-06', 0, 'BK005', 6, 1),
+(8, '2020-06-06', '2020-06-20', '2020-06-12', 0, 'BK013', 4, 1),
+(9, '2020-06-06', '2020-06-20', '2020-06-13', 0, 'BK009', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -164,7 +168,7 @@ CREATE TABLE IF NOT EXISTS `rak` (
   `nama_rak` varchar(50) NOT NULL,
   `lokasi_rak` varchar(50) NOT NULL,
   `idbuku` varchar(5) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `rak`
@@ -183,7 +187,8 @@ INSERT INTO `rak` (`id_rak`, `nama_rak`, `lokasi_rak`, `idbuku`) VALUES
 (10, 'ABC', 'Lantai 2', 'BK010'),
 (11, 'DEF', 'Lantai 2', 'BK011'),
 (12, 'GHI', 'Lantai 2', 'BK012'),
-(13, 'JKL', 'Lantai 2', 'BK013');
+(13, 'JKL', 'Lantai 2', 'BK013'),
+(14, 'abc1', 'lantai 1', 'BK014');
 
 --
 -- Indexes for dumped tables
@@ -233,17 +238,17 @@ ALTER TABLE `rak`
 -- AUTO_INCREMENT for table `anggota`
 --
 ALTER TABLE `anggota`
-  MODIFY `id_anggota` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+  MODIFY `id_anggota` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `peminjaman`
 --
 ALTER TABLE `peminjaman`
-  MODIFY `id_peminjaman` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+  MODIFY `id_peminjaman` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT for table `pengembalian`
 --
 ALTER TABLE `pengembalian`
-  MODIFY `id_pengembalian` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+  MODIFY `id_pengembalian` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `petugas`
 --
@@ -253,7 +258,7 @@ ALTER TABLE `petugas`
 -- AUTO_INCREMENT for table `rak`
 --
 ALTER TABLE `rak`
-  MODIFY `id_rak` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
+  MODIFY `id_rak` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
 --
 -- Constraints for dumped tables
 --
@@ -278,7 +283,7 @@ ADD CONSTRAINT `pengembalian_ibfk_3` FOREIGN KEY (`id_anggota`) REFERENCES `angg
 -- Constraints for table `rak`
 --
 ALTER TABLE `rak`
-ADD CONSTRAINT `buku_rak` FOREIGN KEY (`idbuku`) REFERENCES `buku` (`idbuku`);
+ADD CONSTRAINT `rak_ibfk_1` FOREIGN KEY (`idbuku`) REFERENCES `buku` (`idbuku`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
