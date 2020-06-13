@@ -1,6 +1,6 @@
 <?php
 
-require "../koneksi.php";
+require "../admin/koneksi.php";
 
 function tambahuser($data)
 {
