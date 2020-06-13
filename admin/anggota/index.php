@@ -36,6 +36,13 @@ $dataanggota = mysqli_query($conn, "SELECT * FROM anggota");
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="../assets/css/demo.css" rel="stylesheet" />
     <link href="../assets/css/animate.min.css" rel="stylesheet"/>
+     <!-- AJAX CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Data Tables-->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" />
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+
  </head>
  <body>
  <div class="wrapper">
@@ -116,8 +123,8 @@ $dataanggota = mysqli_query($conn, "SELECT * FROM anggota");
                                 <h4 class="title">Daftar Anggota</h4>
                                 <p class="category">Berikut adalah daftar anggota perpustakaan</p>
                             </div>
-                            <div class="content table-responsive table-full-width">
-                                <table class="table table-hover table-striped">
+                            <div class="content table-responsive">
+                                <table id="tabel-data" class="table table-hover table-striped">
                                     <thead>
                                         <th>Kode Anggota</th>
                                         <th>Nama Anggota</th>
@@ -125,7 +132,7 @@ $dataanggota = mysqli_query($conn, "SELECT * FROM anggota");
                                         <th>Pekerjaan</th>
                                         <th>Nomor Telepon</th>
                                         <th>Alamat</th>
-                                        <th colspan="3">Aksi</th>
+                                        <th>Aksi</th>
                                     </thead>
                                     <tbody>
                                         <?php while ($row = mysqli_fetch_assoc($dataanggota)) : ?>
@@ -136,21 +143,25 @@ $dataanggota = mysqli_query($conn, "SELECT * FROM anggota");
                                                 <td><?= $row['pekerjaan_anggota']; ?></td>
                                                 <td><?= $row['no_telp_anggota']; ?></td>
                                                 <td><?= $row['alamat_anggota']; ?></td>
-                                                <td><?=  "<a href=update_anggota.php?id=".$row['id_anggota'].">Edit</a>";?></td>
-                                                <td><?=  "<a href=hapus_anggota.php?id=".$row['id_anggota'].">Hapus</a>";?></td>   
-                                                <td><?=  "<a href=kartu_anggota.php?id=".$row['id_anggota'].">Cetak Kartu</a>";?></td>                 
+                                                <td>
+                                                    <?=  "<a href=update_anggota.php?id=".$row['id_anggota'].">Edit</a> | 
+                                                         <a href=hapus_anggota.php?id=".$row['id_anggota'].">Hapus</a> | 
+                                                         <a href=kartu_anggota.php?id=".$row['id_anggota'].">Cetak Kartu</a>";?>
+                                                </td>           
                                             </tr>
                                         <?php endwhile; ?>                                        
                                     </tbody>
+                                     <script>
+                                        $(document).ready(function(){
+                                            $('#tabel-data').DataTable();
+                                        });
+                                    </script>
                                 </table>
                                 <p align='center'>
+                                    <a href="cetak_anggota.php">Cetak Data Anggota</a> | 
                                     <a href="tambah_anggota.php">Tambah Anggota</a>
-                                </p>
-                                <p align='center'>
                                     
-                                    <a href="cetak_anggota.php">Cetak Data Anggota</a>
                                 </p>
-
                             </div>
                         </div>
                     </div>
@@ -170,7 +181,6 @@ $dataanggota = mysqli_query($conn, "SELECT * FROM anggota");
 </body>
 
     <!--   Core JS Files   -->
-    <script src="../assets/js/jquery-1.10.2.js" type="text/javascript"></script>
     <script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
 
     <!--  Checkbox, Radio & Switch Plugins -->

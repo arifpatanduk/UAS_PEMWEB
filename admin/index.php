@@ -12,6 +12,8 @@ else
     header('location:../'.$_SESSION['akses'].'/');
 }
 */
+require "koneksi.php";
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -31,6 +33,13 @@ else
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="assets/css/demo.css" rel="stylesheet" />
     <link href="assets/css/animate.min.css" rel="stylesheet"/>
+    <!-- Highcharts -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/series-label.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
  </head>
  <body>
  <div class="wrapper">
@@ -105,47 +114,131 @@ else
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-4">
-                        <div class="card ">
-                            <div class="card-header ">
-                                <h4 class="card-title">Email Statistics</h4>
-                                <p class="card-category">Last Campaign Performance</p>
-                            </div>
-                            <div class="card-body ">
-                                <div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
-                                <div class="legend">
-                                    <i class="fa fa-circle text-info"></i> Open
-                                    <i class="fa fa-circle text-danger"></i> Bounce
-                                    <i class="fa fa-circle text-warning"></i> Unsubscribe
-                                </div>
-                                <hr>
-                                <div class="stats">
-                                    <i class="fa fa-clock-o"></i> Campaign sent 2 days ago
-                                </div>
-                            </div>
-                        </div>
+                    <div class="col-md-6">
+                        <div id="charts"></div>
+
+                        <?php    
+                        $sql = "SELECT tanggal_pinjam, COUNT(tanggal_pinjam) as jumlah FROM peminjaman GROUP BY tanggal_pinjam";
+                        $result = $conn->query($sql);
+                        if ($result->num_rows > 0) {
+                            while($row = $result->fetch_assoc()) {
+                                $tanggal[] = '"'.$row['tanggal_pinjam'].'"';
+                                $jumlah[] = $row['jumlah'];
+                            }
+                        }
+                        ?>
+
+                        <script>
+                            
+
+                        Highcharts.chart('charts', {
+
+                          title: {
+                            text: 'Data Peminjaman'
+                          },
+
+                          subtitle: {
+                            text: 'Statistik jumlah peminjaman di perpustakaan'
+                          },
+
+                          yAxis: {
+                            title: {
+                              text: 'Jumlah'
+                            }
+                          },
+
+                          xAxis: {
+                            categories: [<?php echo join($tanggal, ',') ?>],
+                            title: {
+                              text: null
+                            }
+                          },
+
+                          legend: {
+                            layout: 'vertical',
+                            align: 'right',
+                            verticalAlign: 'middle'
+                          },
+
+                          series: [{
+                            name: 'Jumlah peminjam',
+                            data: [<?php echo join($jumlah, ',') ?>]
+                          }],
+
+                          responsive: {
+                            rules: [{
+                              condition: {
+                                maxWidth: 500
+                              },
+                              chartOptions: {
+                                legend: {
+                                  layout: 'horizontal',
+                                  align: 'center',
+                                  verticalAlign: 'bottom'
+                                }
+                              }
+                            }]
+                          }
+
+                        });
+                        </script>
                     </div>
-                    <div class="col-md-8">
-                        <div class="card ">
-                            <div class="card-header ">
-                                <h4 class="card-title">Users Behavior</h4>
-                                <p class="card-category">24 Hours performance</p>
-                            </div>
-                            <div class="card-body ">
-                                <div id="chartHours" class="ct-chart"></div>
-                            </div>
-                            <div class="card-footer ">
-                                <div class="legend">
-                                    <i class="fa fa-circle text-info"></i> Open
-                                    <i class="fa fa-circle text-danger"></i> Click
-                                    <i class="fa fa-circle text-warning"></i> Click Second Time
-                                </div>
-                                <hr>
-                                <div class="stats">
-                                    <i class="fa fa-history"></i> Updated 3 minutes ago
-                                </div>
-                               </div>
-                        </div>
+                
+                    <div class="col-md-6">
+                        <div id="diagram"></div>
+
+                        <?php    
+                        $sql = "SELECT kategori, COUNT(kategori) AS jumlah FROM peminjaman
+                                INNER JOIN buku ON peminjaman.idbuku = buku.idbuku
+                                GROUP BY kategori";
+                        $result = $conn->query($sql);
+                        if ($result->num_rows > 0) {
+                            while($row = $result->fetch_assoc()) {
+                                $kat[] = "'".$row['kategori']."'";
+                                $jml[] = $row['jumlah'];
+                            }
+                        }
+                        ?>
+                        <script>
+                          Highcharts.chart('diagram', {
+                        chart: {
+                          type: 'column'
+                        },
+                        title: {
+                          text: 'Kategori buku'
+                        },
+                        subtitle: {
+                          text: 'Kategori buku yang dipinjam'
+                        },
+
+                        xAxis: {
+                          categories: [<?php echo join($kat, ',') ?>],
+                          title: {
+                              text: null
+                          }
+                        },
+
+                        yAxis: {
+                          min: 0,
+                          title: {
+                            text: 'Jumlah'
+                          }
+                        },
+                        legend: {
+                          enabled: false
+                        },
+                        tooltip: {
+                          pointFormat: 'Jumlah peminjam:  <b>{point.y} buah</b>'
+                        },
+
+                        series: [{
+                          name: 'Jumlah pengembalian',
+                          data: [<?php echo join($jml, ',') ?>]
+                       }],
+
+                      });
+                      </script>
+
                     </div>
                 </div>
             </div>

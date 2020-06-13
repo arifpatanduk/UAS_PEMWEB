@@ -63,6 +63,10 @@ if (isset($_POST['submit'])) {
     <link href="../assets/css/animate.min.css" rel="stylesheet"/>
      <!-- AJAX CDN -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Data Tables-->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" />
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
 
  </head>
  <body>
@@ -261,37 +265,47 @@ if (isset($_POST['submit'])) {
                                 <h4 class="title">Daftar Peminjaman</h4>
                                 <p class="category">Berikut adalah daftar peminjaman perpustakaan</p>
                             </div>
-                            <div class="content table-responsive table-full-width">
-                                <table class="table table-hover table-striped">
+                            <div class="content table-responsive">
+                                <table id="tabel-data" class="table table-striped table-hover">
                                     <thead>
-                                        <th>No. Pinjam</th>
-                                        <th>Nama Anggote</th>
-                                        <th>Judul Buku</th>
-                                        <th>Tanggal Pinjam</th>
-                                        <th>Jatuh Tempo</th>
-                                        <th colspan="2">Aksi</th>
+                                        <tr>
+                                            <th>No. Pinjam</th>
+                                            <th>Nama Anggota</th>
+                                            <th>Judul Buku</th>
+                                            <th>Tanggal Pinjam</th>
+                                            <th>Jatuh Tempo</th>
+                                            <th>Aksi</th>
+                                        </tr>
                                     </thead>
                                     <tbody>
-                                        <?php while ($row = mysqli_fetch_assoc($datapinjam)) : ?>
-                                            <tr>
-                                                <td><?= $row['id_peminjaman']; ?></td>
-                                                <td><?= $row['nama_anggota']; ?></td>
-                                                <td><?= $row['judulbuku']; ?></td>
-                                                <td><?= $row['tanggal_pinjam']; ?></td>
-                                                <td><?= $row['jatuh_tempo']; ?></td>
-                                                <td>
-                                                    <a href="../kembali/kembali.php?id=<?= $row['id_peminjaman']; ?>" onclick="return confirm('Peminjaman dikembalikan?');">
-                                                        Kembali
-                                                    </a>
-                                                </td>
-                                                <td>
-                                                    <a href="perpanjang.php?id=<?= $row['id_peminjaman']; ?> ">
-                                                        Perpanjang
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                        <?php endwhile; ?>
+                                    <?php
+                                        while($row = mysqli_fetch_array($datapinjam))
+                                        {
+                                            echo "<tr>
+                                            <td>".$row['id_peminjaman']."</td>
+                                            <td>".$row['nama_anggota']."</td>
+                                            <td>".$row['judulbuku']."</td>
+                                            <td>".$row['tanggal_pinjam']."</td>
+                                            <td>".$row['jatuh_tempo']."</td>
+                                            <td>
+                                                <a href='../kembali/kembali.php?id=".$row['id_peminjaman']."' onclick='return confirm('Peminjaman dikembalikan?');'>
+                                                    Kembali
+                                                </a>    |   
+                                                <a href='perpanjang.php?id=".$row['id_peminjaman']." '>
+                                                    Perpanjang
+                                                </a>
+                                            </td>
+                                        </tr>";
+                                        }
+                                    ?>
                                     </tbody>
+
+                                    <script>
+                                    $(document).ready(function(){
+                                        $('#tabel-data').DataTable();
+                                    });
+                                </script>
+                                 
                                 </table>
 
                             </div>
@@ -313,7 +327,6 @@ if (isset($_POST['submit'])) {
 </body>
 
     <!--   Core JS Files   -->
-    <script src="../assets/js/jquery-1.10.2.js" type="text/javascript"></script>
     <script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
 
     <!--  Checkbox, Radio & Switch Plugins -->
