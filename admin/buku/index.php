@@ -36,6 +36,12 @@ $databuku = mysqli_query($conn, "SELECT * FROM buku INNER JOIN rak ON buku.idbuk
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="../assets/css/demo.css" rel="stylesheet" />
     <link href="../assets/css/animate.min.css" rel="stylesheet"/>
+     <!-- AJAX CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Data Tables-->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" />
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
  </head>
  <body>
  <div class="wrapper">
@@ -116,8 +122,8 @@ $databuku = mysqli_query($conn, "SELECT * FROM buku INNER JOIN rak ON buku.idbuk
                                 <h4 class="title">Daftar Buku</h4>
                                 <p class="category">Berikut adalah daftar buku perpustakaan</p>
                             </div>
-                            <div class="content table-responsive table-full-width">
-                                <table class="table table-hover table-striped">
+                            <div class="content table-responsive">
+                                <table id="tabel-data" class="table table-hover table-striped">
                                     <thead>
                                         <th>Kode Buku</th>
                                         <th>Gambar</th>
@@ -128,7 +134,7 @@ $databuku = mysqli_query($conn, "SELECT * FROM buku INNER JOIN rak ON buku.idbuk
                                         <th>Stok</th>
                                         <th>Nama Rak</th>
                                         <th>Lokasi Rak</th>
-                                        <th colspan="2">Aksi</th>
+                                        <th>Aksi</th>
                                     </thead>
                                     <tbody>
                                         <?php while ($row = mysqli_fetch_assoc($databuku)) : ?>
@@ -142,17 +148,22 @@ $databuku = mysqli_query($conn, "SELECT * FROM buku INNER JOIN rak ON buku.idbuk
                                                 <td><?= $row['stok']; ?></td>
                                                 <td><?= $row['nama_rak']; ?></td>
                                                 <td><?= $row['lokasi_rak']; ?></td>
-                                                <td><?=  "<a href=update_buku.php?id=".$row['idbuku'].">Edit</a>";?></td>
-                                                <td><?=  "<a href=hapus_buku.php?id=".$row['idbuku'].">Hapus</a>";?></td>                  
+                                                <td>
+                                                    <?=  "<a href=update_buku.php?id=".$row['idbuku'].">Edit</a> | 
+                                                          <a href=hapus_buku.php?id=".$row['idbuku'].">Hapus</a>";?>
+                                                </td>                 
                                             </tr>
                                         <?php endwhile; ?>                                     
                                     </tbody>
+                                    <script>
+                                        $(document).ready(function(){
+                                            $('#tabel-data').DataTable();
+                                        });
+                                    </script>
                                 </table>
                                 <p align='center'>
+                                    <a href="cetak_buku.php">Cetak Data Buku</a> | 
                                     <a href="tambah_buku.php">Tambah Buku</a>
-                                </p>
-                                <p align='center'>
-                                    <a href="cetak_buku.php">Cetak Data Buku</a>
                                 </p>
 
                             </div>
@@ -174,7 +185,6 @@ $databuku = mysqli_query($conn, "SELECT * FROM buku INNER JOIN rak ON buku.idbuk
 </body>
 
     <!--   Core JS Files   -->
-    <script src="../assets/js/jquery-1.10.2.js" type="text/javascript"></script>
     <script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
 
     <!--  Checkbox, Radio & Switch Plugins -->

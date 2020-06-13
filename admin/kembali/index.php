@@ -43,6 +43,12 @@ $datakembali = mysqli_query(
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="../assets/css/demo.css" rel="stylesheet" />
     <link href="../assets/css/animate.min.css" rel="stylesheet"/>
+     <!-- AJAX CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Data Tables-->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" />
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
  </head>
  <body>
  <div class="wrapper">
@@ -123,8 +129,8 @@ $datakembali = mysqli_query(
                                 <h4 class="title">Data Pengembalian Buku</h4>
                                 <p class="category">Berikut adalah data pengembalian buku</p>
                             </div>
-                            <div class="content table-responsive table-full-width">
-                                <table class="table table-hover table-striped">
+                            <div class="content table-responsive">
+                                <table id="tabel-data" class="table table-hover table-striped">
                                     <thead>
                                         <th>No. Kembali</th>
                                         <th>Nama Anggote</th>
@@ -147,6 +153,11 @@ $datakembali = mysqli_query(
                                             </tr>
                                         <?php endwhile; ?>
                                     </tbody>
+                                    <script>
+                                        $(document).ready(function(){
+                                            $('#tabel-data').DataTable();
+                                        });
+                                    </script>
                                 </table>
                             </div>
                         </div>
@@ -167,7 +178,6 @@ $datakembali = mysqli_query(
 </body>
 
     <!--   Core JS Files   -->
-    <script src="../assets/js/jquery-1.10.2.js" type="text/javascript"></script>
     <script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
 
     <!--  Checkbox, Radio & Switch Plugins -->
