@@ -32,7 +32,7 @@ if (isset($_POST['submit'])) {
     if (pinjam($_POST) > 0) {
         echo "
         <script>alert('Peminjaman berhasil');
-        document.location.href='pinjam.php';
+        document.location.href='index.php';
         </script>";
     } else {
         echo "
@@ -139,8 +139,8 @@ if (isset($_POST['submit'])) {
                                 </p>
                             </a>
                             <ul class="dropdown-menu">
-                                <li class="active"><a href="index.php">Transaksi Peminjaman</a></li>
-                                <li><a href="pinjam.php">Daftar Peminjaman</a></li>
+                                <li><a href="index.php">Transaksi Peminjaman</a></li>
+                                <li class="active"><a href="pinjam.php">Daftar Peminjaman</a></li>
                               </ul>
                         </li>   
                         <li>
@@ -156,122 +156,63 @@ if (isset($_POST['submit'])) {
         </nav>
 
         <div class="content">
-            <div class="row register-form" style="margin-top:-50px;">
-                <form class="form-horizontal custom-form" action="" method="post" enctype="multipart/form-data">
-                <h1>Transaksi Peminjaman Buku</h1>
-                    <div class="form-group">
-                        <div class="col-sm-4 label-column">
-                            <label class="control-label" for="idbuku">Kode Buku</label>
-                        </div>
-                        <div class="col-sm-6 input-column">
-                            <input type="text" class="form-control" name="idbuku" id="idbuku" placeholder="Masukkan Kode Buku" required>
-                        </div>
-                    </div>   
-                    <div class="form-group">
-                        <div class="col-sm-4 label-column">
-                            <label class="control-label" for="kategori">Kategori Buku</label>
-                        </div>
-                        <div class="col-sm-6 input-column">
-                            <input type="text" class="form-control" name="kategori" id="kategori"  readonly required>
-                        </div>
-                    </div> 
-                    <div class="form-group">
-                        <div class="col-sm-4 label-column">
-                            <label class="control-label" for="judulbuku">Judul Buku</label>
-                        </div>
-                        <div class="col-sm-6 input-column">
-                            <input type="text" class="form-control" name="judulbuku" id="judulbuku" readonly required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-4 label-column">
-                            <label class="control-label" for="id_anggota">ID Anggota</label>
-                        </div>
-                        <div class="col-sm-6 input-column">
-                            <input type="text" class="form-control"name="id_anggota" id="id_anggota" placeholder="Masukkan Id Anggota" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-4 label-column">
-                            <label class="control-label" for="nama">Nama Anggota</label>
-                        </div>
-                        <div class="col-sm-6 input-column">
-                            <input type="text" class="form-control" name="nama" id="nama" readonly  required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-4 label-column">
-                            <label class="control-label" for="tglpinjam">Tanggal Pinjam</label>
-                        </div>
-                        <div class="col-sm-6 input-column">
-                            <input type="date" class="form-control" name="tglpinjam" id="tglpinjam" value="<?= date("Y-m-d"); ?>" readonly>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-4 label-column">
-                            <label class="control-label" for="jatuhtempo">Jatuh Tempo</label>
-                        </div>
-                        <div class="col-sm-6 input-column">
-                            <input type="date" class="form-control" name="jatuhtempo" id="jatuhtempo" value="<?= date('Y-m-d', time() + (60 * 60 * 24 * 7)); ?>" readonly>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">Daftar Peminjaman</h4>
+                                <p class="category">Berikut adalah daftar peminjaman perpustakaan</p>
+                            </div>
+                            <div class="content table-responsive">
+                                <table id="tabel-data" class="table table-striped table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>No. Pinjam</th>
+                                            <th>Nama Anggota</th>
+                                            <th>Judul Buku</th>
+                                            <th>Tanggal Pinjam</th>
+                                            <th>Jatuh Tempo</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php
+                                        while($row = mysqli_fetch_array($datapinjam))
+                                        {
+                                            echo "<tr>
+                                            <td>".$row['id_peminjaman']."</td>
+                                            <td>".$row['nama_anggota']."</td>
+                                            <td>".$row['judulbuku']."</td>
+                                            <td>".$row['tanggal_pinjam']."</td>
+                                            <td>".$row['jatuh_tempo']."</td>
+                                            <td>
+                                                <a href='../kembali/kembali.php?id=".$row['id_peminjaman']."' onclick='return confirm('Peminjaman dikembalikan?');'>
+                                                    Kembali
+                                                </a>    |   
+                                                <a href='perpanjang.php?id=".$row['id_peminjaman']." '>
+                                                    Perpanjang
+                                                </a>
+                                            </td>
+                                        </tr>";
+                                        }
+                                    ?>
+                                    </tbody>
+
+                                    <script>
+                                    $(document).ready(function(){
+                                        $('#tabel-data').DataTable();
+                                    });
+                                </script>
+                                 
+                                </table>
+
+                            </div>
                         </div>
                     </div>
-                    <button class="btn btn-default submit-button" type="submit" name="submit" id="yes">Input Peminjaman</button>         
-                </form>
+
+                </div>
             </div>
-            <script>
-                // AUTO ISI BUKU
-                $(function() {
-                    $("#idbuku").change(function() {
-                        var idbuku = $("#idbuku").val();
-
-                        $.ajax({
-                            url: 'get_data.php',
-                            type: 'POST',
-                            dataType: 'json',
-                            data: {
-                                'idbuku': idbuku
-                            },
-                            success: function(buku) {
-                                $("#kategori").val(buku['kategori']);
-                                $("#judulbuku").val(buku['judulbuku']);
-                            }
-                        })
-                    })
-                })
-
-                // AUTO ISI ANGGOTA
-                $(function() {
-                    $("#id_anggota").change(function() {
-                        var id_anggota = $("#id_anggota").val();
-
-                        $.ajax({
-                            url: 'get_data.php',
-                            type: 'POST',
-                            dataType: 'json',
-                            data: {
-                                'id_anggota': id_anggota
-                            },
-                            success: function(anggota) {
-                                $("#nama").val(anggota['nama_anggota']);
-                            }
-                        })
-                    })
-                })
-
-                // $("#id_anggota").change(function() {
-                //     var id_anggota = $("#id_anggota").val();
-
-                //     $.ajax({
-                //         type: "POST",
-                //         dataType: "html",
-                //         url: "get_data.php",
-                //         data: "id_anggota=" + id_anggota,
-                //         success: function(data) {
-                //             $("#nama").html(data);
-                //         }
-                //     });
-                // });
-            </script>
         </div>
         <footer class="footer" style="margin-top:0px;">
         <div class="container-fluid">
