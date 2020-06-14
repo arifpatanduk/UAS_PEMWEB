@@ -35,7 +35,7 @@ $result = mysqli_query($conn, "SELECT * FROM buku ORDER BY idbuku DESC LIMIT 3")
       <div class="navbar-nav">
         <a class="nav-item nav-link active" href="index.php">Home <span class="sr-only">(current)</span></a>
         <a class="nav-item nav-link" href="books.php">Books</a>
-        <a class="nav-item nav-link" href="#">Contact Us</a>
+        <a class="nav-item nav-link" href="contact.php">Contact Us</a>
         <a class="nav-item nav-link" href="login/login.html">Login</a>
       </div>
     </div>

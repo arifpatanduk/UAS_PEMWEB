@@ -1,22 +1,10 @@
 <?php
 session_start();
-/*
-if( $_SESSION['akses'] == 'guru' or 'cso' or 'he')
-{
-    $lokasi = $_SESSION['lokasi'];
-    $id     = $_SESSION['id'];
-    $email  = $_SESSION['email'];
-}
-else
-{
-    header('location:../'.$_SESSION['akses'].'/');
-}
-*/
 
-if (!isset($_SESSION["login"])) {
-    header("Location: ../../login/login.php");
-    exit;
-}
+// if (!isset($_SESSION["login"])) {
+//     header("Location: ../../login/login.php");
+//     exit;
+// }
 
 require "../koneksi.php";
 require "function.php";
@@ -280,20 +268,6 @@ if (isset($_POST['submit'])) {
                                 })
                             })
                         })
-
-                        // $("#id_anggota").change(function() {
-                        //     var id_anggota = $("#id_anggota").val();
-
-                        //     $.ajax({
-                        //         type: "POST",
-                        //         dataType: "html",
-                        //         url: "get_data.php",
-                        //         data: "id_anggota=" + id_anggota,
-                        //         success: function(data) {
-                        //             $("#nama").html(data);
-                        //         }
-                        //     });
-                        // });
                     </script>
                 </div>
             </div>

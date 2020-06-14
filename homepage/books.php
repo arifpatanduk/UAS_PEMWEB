@@ -39,8 +39,8 @@ if (isset($_POST['cari'])) {
         <div class="collapse navbar-collapse navbar-right justify-content-end" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-item nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link active" href="#">Books</a>
-                <a class="nav-item nav-link" href="#">Contact Us</a>
+                <a class="nav-item nav-link active" href="books.php">Books</a>
+                <a class="nav-item nav-link" href="contact.php">Contact Us</a>
                 <a class="nav-item nav-link" href="login/login.html">Login</a>
             </div>
         </div>

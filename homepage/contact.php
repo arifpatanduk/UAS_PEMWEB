@@ -1,8 +1,17 @@
 <?php
 
 require "function.php";
-require "koneksi.php";
-
+// require "koneksi.php";
+$respon = '';
+if (isset($_POST['kirim'])) {
+    if (kirim($_POST)) {
+        $respon = 1;
+    } else {
+        $respon = 0;
+    }
+}
+// $respon = "Thanks" . $data['nama'] . "for contacting us. We'll get back to you soon!";
+// $respon = "Something went wrong. Please try again";
 ?>
 
 <!DOCTYPE html>
@@ -12,7 +21,7 @@ require "koneksi.php";
     <!-- meta tag -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Books | PerpusKita</title>
+    <title>Contact Us | INIPerpus</title>
     <link rel="icon" type="image/png" href="../logo.png">
 
     <!-- CSS -->
@@ -26,15 +35,15 @@ require "koneksi.php";
 <body>
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow" style="background: #0D7377;">
-        <a class="navbar-brand" href="index.php"><img src="../logo.png" alt="" width="40"> PerpusKita</a>
+        <a class="navbar-brand" href="index.php"><img src="../logo.png" alt="" width="40"> INIPerpus</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse navbar-right justify-content-end" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-item nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link active" href="#">Books</a>
-                <a class="nav-item nav-link" href="#">Contact Us</a>
+                <a class="nav-item nav-link" href="books.php">Books</a>
+                <a class="nav-item nav-link active" href="contact.php">Contact Us</a>
                 <a class="nav-item nav-link" href="login/login.html">Login</a>
             </div>
         </div>
@@ -42,91 +51,113 @@ require "koneksi.php";
 
     <!-- konten -->
     <div class="container konten">
-        <div class="mt-4">
-            <h4>
-                <i class="fas fa-search"></i>
-                SEARCH BOOK
-            </h4>
-        </div>
+        <div class="card-deck mt-5">
 
-        <div class="card">
-            <div class="card-body">
-                <form action="" method="POST">
-                    <div class="form-row">
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" id="judul" name="judul" placeholder="Insert books title" autocomplete="off">
-                        </div>
-                        <div class="col-sm-5">
-                            <select class="form-control" name="kategori" id="">
-                                <option value="selected" selected> -- Category --</option>
-
-                                <?php
-                                $kategori = mysqli_query($conn, "SELECT * FROM buku GROUP BY kategori");
-                                while ($row = mysqli_fetch_assoc($kategori)) : ?>
-                                    <option value="<?= $row['kategori']; ?>"><?= $row['kategori']; ?></option>
-                                <?php endwhile; ?>
-                            </select>
-
-                        </div>
-                        <div class="col">
-                            <button type="submit" name="cari" class="btn btn-dark" style="background: #0D7377;">Search</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <div class="mt-4">
-            <h4>
-                <i class="fas fa-list"></i>
-                SEARCH RESULT
-            </h4>
-        </div>
-
-        <div class="card">
-            <!-- card -->
-            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <!-- send email -->
+            <div class="card">
+                <div class="card-header">
+                    <h4><i class="fas fa-paper-plane"></i>
+                        Send Email
+                    </h4>
+                </div>
                 <div class="card-body">
-                    <div class="row">
-                        <?php while ($row = mysqli_fetch_assoc($result)) : ?>
-                            <div class="col-sm-4 mt-3">
-                                <div class="card col-sm-12">
-                                    <!-- ribbon -->
-                                    <?php if ($row['stok'] > 0) : ?>
-                                        <div class="ribbon">
-                                            <div class="label">AVAILABLE</div>
-                                        </div>
-                                    <?php endif; ?>
 
-                                    <img src="../admin/image/<?= $row['gambar']; ?>" class="card-img-top rounded-lg" alt="cover.jpg" height="425" />
-                                    <div class="card-body">
-                                        <h5 class="card-title"><?= $row['judulbuku']; ?></h5>
-                                        <p class="card-text"><?= $row['penulis']; ?></p>
-                                        <p class="card-text">
-                                            <small class="text-muted"><?= $row['kategori']; ?></small>
-                                        </p>
-                                    </div>
-                                    <div class="card-footer">
-                                        <table class="table table-sm table-borderless">
-                                            <tr>
-                                                <td>Lokasi</td>
-                                                <td>: <?= $row['lokasi_rak']; ?> </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Rak</td>
-                                                <td>: <?= $row['nama_rak']; ?></td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
+                    <?php if ($respon === 1) : ?>
+                        <div class="alert alert-success alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <strong>Success!</strong>
+                            Thanks <?= $_POST['nama']; ?> for contacting us. We'll get back to you soon!
+                        </div>
+                    <?php elseif ($respon === 0) : ?>
+                        <div class="alert alert-danger alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <strong>Warning!</strong> Something went wrong. Please try again.
+                        </div>
+                    <?php else : ?>
+                        <div></div>
+                    <?php endif; ?>
 
+                    <form action="" method="POST">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="fas fa-user"></i>
+                                </span>
                             </div>
-                        <?php endwhile; ?>
+                            <input type="text" class="form-control" name="nama" placeholder="Enter your name" required>
+                        </div>
 
-                    </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="fas fa-envelope"></i>
+                                </span>
+                            </div>
+                            <input type="email" class="form-control" name="email" placeholder="Enter email" required>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="fas fa-at"></i>
+                                </span>
+                            </div>
+                            <input type="text" class="form-control" name="subject" placeholder="Enter subject" required>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="fas fa-keyboard"></i>
+                                </span>
+                            </div>
+                            <textarea type="text" class="form-control" name="pesan" placeholder="Write your message" required></textarea>
+                        </div>
+                        <div>
+                            <button type="submit" class=" btn btn-block btn-dark">Send Email</button>
+                        </div>
+
+                    </form>
                 </div>
             </div>
 
+            <!-- information -->
+            <div class="card">
+                <div class="card-header">
+                    <h4><i class="fas fa-info-circle"></i>
+                        Information
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <h4>
+                        <img src="../logo.png" alt="" width="60"> INIPerpus
+                    </h4>
+                    <div class="mt-5">
+                        <table class="table-sm table-borderless">
+                            <tr>
+                                <td class="text-center"><i class="fas fa-home"></i></td>
+                                <td>Informatics Education, UNS</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center"><i class="fas fa-map-marker-alt"></i></td>
+                                <td>Jalan A. Yani Makam Haji, Makamhaji, Kec. Kartasura, Kabupaten Sukoharjo, Jawa Tengah 57161</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center"><i class="fas fa-phone-alt"></i></td>
+                                <td>+62 852 5459 0505</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center"><i class="fas fa-envelope"></i></td>
+                                <td>iniperpus@gmail.com</td>
+                            </tr>
+
+                        </table>
+                    </div>
+
+
+                </div>
+
+            </div>
         </div>
 
     </div>
