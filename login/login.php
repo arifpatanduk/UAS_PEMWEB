@@ -54,6 +54,13 @@ if (isset($_POST['login'])) {
     <form class="form-signin" method="POST" action="">
         <img class="mb-4" src="../logo.png" alt="" width="72" height="72" />
         <h1 class="h3 mb-3 font-weight">INIPerpus</h1>
+
+        <?php if (isset($error)) : ?>
+            <div class="alert alert-danger">
+                <strong>Password / Username salah</strong>
+            </div>
+        <?php endif; ?>
+
         <label for="username" class="sr-only">Username</label>
         <input type="text" id="username" name="username" class="form-control" placeholder="Username" required autofocus />
         <label for="pass" class="sr-only">Password</label>

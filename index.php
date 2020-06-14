@@ -22,7 +22,7 @@ $result = mysqli_query($conn, "SELECT * FROM buku ORDER BY idbuku DESC LIMIT 3")
 
   <link rel="stylesheet" href="style.css" />
 
-  <link rel="icon" type="image/png" href="../logo.png">
+  <link rel="icon" type="image/png" href="logo.png">
   <link rel="stylesheet" href="load.css" />
 </head>
 
@@ -62,7 +62,7 @@ $result = mysqli_query($conn, "SELECT * FROM buku ORDER BY idbuku DESC LIMIT 3")
   <!-- navbar -->
   <div id="myDiv" style="display: none;">
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow" style="background: #0D7377;">
-      <a class="navbar-brand" href="index.php"><img src="../logo.png" alt="" width="40"> INIPerpus</a>
+      <a class="navbar-brand" href="index.php"><img src="logo.png" alt="" width="40"> INIPerpus</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -71,7 +71,7 @@ $result = mysqli_query($conn, "SELECT * FROM buku ORDER BY idbuku DESC LIMIT 3")
           <a class="nav-item nav-link active" href="index.php">Home <span class="sr-only">(current)</span></a>
           <a class="nav-item nav-link" href="books.php">Books</a>
           <a class="nav-item nav-link" href="contact.php">Contact Us</a>
-          <a class="nav-item nav-link" href="../login/login.php">Login</a>
+          <a class="nav-item nav-link" href="login/login.php">Login</a>
         </div>
       </div>
     </nav>
@@ -140,7 +140,7 @@ $result = mysqli_query($conn, "SELECT * FROM buku ORDER BY idbuku DESC LIMIT 3")
                       </div>
                     <?php endif; ?>
 
-                    <img src="../image/<?= $row['gambar']; ?>" class="card-img-top rounded-lg" alt="cover.jpg" height="450" />
+                    <img src="image/<?= $row['gambar']; ?>" class="card-img-top rounded-lg" alt="cover.jpg" height="450" />
                     <div class="card-body">
                       <h5 class="card-title"><?= $row['judulbuku']; ?></h5>
                       <p class="card-text"><?= $row['penulis']; ?></p>

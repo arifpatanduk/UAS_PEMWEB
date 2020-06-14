@@ -19,7 +19,7 @@ if (isset($_POST['cari'])) {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>Books | INIPerpus</title>
-    <link rel="icon" type="image/png" href="../logo.png">
+    <link rel="icon" type="image/png" href="logo.png">
 
     <!-- CSS -->
     <!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
@@ -32,7 +32,7 @@ if (isset($_POST['cari'])) {
 <body>
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow" style="background: #0D7377;">
-        <a class="navbar-brand" href="index.php"><img src="../logo.png" alt="" width="40"> PerpusKita</a>
+        <a class="navbar-brand" href="index.php"><img src="logo.png" alt="" width="40"> PerpusKita</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -41,7 +41,7 @@ if (isset($_POST['cari'])) {
                 <a class="nav-item nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
                 <a class="nav-item nav-link active" href="books.php">Books</a>
                 <a class="nav-item nav-link" href="contact.php">Contact Us</a>
-                <a class="nav-item nav-link" href="../login/login.php">Login</a>
+                <a class="nav-item nav-link" href="login/login.php">Login</a>
             </div>
         </div>
     </nav>
@@ -104,7 +104,7 @@ if (isset($_POST['cari'])) {
                                         </div>
                                     <?php endif; ?>
 
-                                    <img src="../image/<?= $row['gambar']; ?>" class="card-img-top rounded-lg" alt="cover.jpg" height="425" />
+                                    <img src="image/<?= $row['gambar']; ?>" class="card-img-top rounded-lg" alt="cover.jpg" height="425" />
                                     <div class="card-body">
                                         <h5 class="card-title"><?= $row['judulbuku']; ?></h5>
                                         <p class="card-text"><?= $row['penulis']; ?></p>

@@ -22,7 +22,7 @@ if (isset($_POST['kirim'])) {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>Contact Us | INIPerpus</title>
-    <link rel="icon" type="image/png" href="../logo.png">
+    <link rel="icon" type="image/png" href="logo.png">
 
     <!-- CSS -->
     <!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
@@ -35,7 +35,7 @@ if (isset($_POST['kirim'])) {
 <body>
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow" style="background: #0D7377;">
-        <a class="navbar-brand" href="index.php"><img src="../logo.png" alt="" width="40"> INIPerpus</a>
+        <a class="navbar-brand" href="index.php"><img src="logo.png" alt="" width="40"> INIPerpus</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -44,7 +44,7 @@ if (isset($_POST['kirim'])) {
                 <a class="nav-item nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
                 <a class="nav-item nav-link" href="books.php">Books</a>
                 <a class="nav-item nav-link active" href="contact.php">Contact Us</a>
-                <a class="nav-item nav-link" href="../login/login.php">Login</a>
+                <a class="nav-item nav-link" href="login/login.php">Login</a>
             </div>
         </div>
     </nav>

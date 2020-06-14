@@ -1,0 +1,11 @@
+Username	epiz_26012571
+Password	IKqPoKBnF8fAmlg
+
+FTP Password	IKqPoKBnF8fAmlg
+FTP Hostname	ftpupload.net
+FTP Port (optional)	21
+
+MySQL Username	epiz_26012571
+MySQL Password	IKqPoKBnF8fAmlg
+MySQL Hostname	sql307.epizy.com
+MySQL DB Name	epiz_26012571_perpus
