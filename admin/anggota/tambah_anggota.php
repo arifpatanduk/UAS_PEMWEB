@@ -1,17 +1,4 @@
 <?php
-session_start();
-/*
-if( $_SESSION['akses'] == 'guru' or 'cso' or 'he')
-{
-    $lokasi = $_SESSION['lokasi'];
-    $id     = $_SESSION['id'];
-    $email  = $_SESSION['email'];
-}
-else
-{
-    header('location:../'.$_SESSION['akses'].'/');
-}
-*/
 require '../koneksi.php';
 require 'function.php';
 
@@ -65,9 +52,15 @@ if (isset($_POST['submit'])) {
                         <p>Dashboard</p>
                     </a>
                 </li>
+                <li>
+                    <a href="../petugas/index.php">
+                        <i class="pe-7s-users"></i>
+                        <p>Petugas</p>
+                    </a>
+                </li>
                 <li class="active">
                     <a href="index.php">
-                        <i class="pe-7s-user"></i>
+                        <i class="pe-7s-users"></i>
                         <p>Anggota</p>
                     </a>
                 </li>
@@ -89,6 +82,18 @@ if (isset($_POST['submit'])) {
                         <p>Pengembalian</p>
                     </a>
                 </li>
+                <li>
+                    <a href="../profile.php">
+                      <i class="pe-7s-user"></i>
+                      <p>My Profile</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="../ganti_password.php">
+                      <i class="pe-7s-key"></i>
+                      <p>Ganti Password</p>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
@@ -108,7 +113,7 @@ if (isset($_POST['submit'])) {
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">        
                         <li>
-                            <a href="include/logout.php">
+                            <a href="../logout.php">
                                 <p>Log out</p>
                             </a>
                         </li>

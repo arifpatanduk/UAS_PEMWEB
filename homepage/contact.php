@@ -35,7 +35,7 @@ require "koneksi.php";
                 <a class="nav-item nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
                 <a class="nav-item nav-link active" href="#">Books</a>
                 <a class="nav-item nav-link" href="#">Contact Us</a>
-                <a class="nav-item nav-link" href="login/login.html">Login</a>
+                <a class="nav-item nav-link" href="login/index.php">Login</a>
             </div>
         </div>
     </nav>

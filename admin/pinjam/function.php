@@ -1,5 +1,11 @@
 <?php
 
+session_start();
+
+if($_SESSION["role"] != 'admin') {
+  header("Location: ../homepage/login/");
+}
+
 require "../koneksi.php";
 
 function query($query)

@@ -1,25 +1,26 @@
 <?php
 session_start();
 require "../admin/koneksi.php";
-require "function.php";
 
 if (isset($_POST['login'])) {
 
     $username = $_POST['username'];
     $password = $_POST['pass'];
 
-    $result = mysqli_query($conn, "SELECT * FROM petugas WHERE username = '$username' ");
+    $result = mysqli_query($conn, "SELECT * FROM petugas WHERE username = '$username' and password = '$password' ");
 
     if (mysqli_num_rows($result) == 1) {
 
         $row = mysqli_fetch_assoc($result);
-        if (password_verify($password, $row['password'])) {
-
-            $_SESSION["login"] = true;
-
-            header("Location: ../admin/index.php");
-            exit;
+        
+        $_SESSION["login"] = true;
+        $_SESION["role"]   = $row["jabatan_petugas"];
+        if($_SESION["role"] == 'admin'){
+            header("Location: ../admin/index.php");   
+        }else{
+            header("Location: ../petugas/index.php");
         }
+        exit;
     }
 
     $error = true;

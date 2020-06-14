@@ -36,7 +36,7 @@ $result = mysqli_query($conn, "SELECT * FROM buku ORDER BY idbuku DESC LIMIT 3")
         <a class="nav-item nav-link active" href="index.php">Home <span class="sr-only">(current)</span></a>
         <a class="nav-item nav-link" href="books.php">Books</a>
         <a class="nav-item nav-link" href="#">Contact Us</a>
-        <a class="nav-item nav-link" href="login/login.html">Login</a>
+        <a class="nav-item nav-link" href="login/index.php">Login</a>
       </div>
     </div>
   </nav>
@@ -105,7 +105,7 @@ $result = mysqli_query($conn, "SELECT * FROM buku ORDER BY idbuku DESC LIMIT 3")
                     </div>
                   <?php endif; ?>
 
-                  <img src="../admin/image/<?= $row['gambar']; ?>" class="card-img-top rounded-lg" alt="cover.jpg" height="450" />
+                  <img src="../image/<?= $row['gambar']; ?>" class="card-img-top rounded-lg" alt="cover.jpg" height="450" />
                   <div class="card-body">
                     <h5 class="card-title"><?= $row['judulbuku']; ?></h5>
                     <p class="card-text"><?= $row['penulis']; ?></p>

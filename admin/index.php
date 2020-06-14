@@ -2,9 +2,8 @@
 session_start();
 require "koneksi.php";
 
-if (!isset($_SESSION["login"])) {
-  header("Location: ../login/login.php");
-  exit;
+if($_SESSION["role"] != 'admin') {
+  header("Location: ../homepage/login/");
 }
 
 ?>
@@ -54,8 +53,14 @@ if (!isset($_SESSION["login"])) {
             </a>
           </li>
           <li>
+            <a href="petugas/index.php">
+              <i class="pe-7s-users"></i>
+              <p>Petugas</p>
+            </a>
+          </li>
+          <li>
             <a href="anggota/index.php">
-              <i class="pe-7s-user"></i>
+              <i class="pe-7s-users"></i>
               <p>Anggota</p>
             </a>
           </li>
@@ -75,6 +80,18 @@ if (!isset($_SESSION["login"])) {
             <a href="kembali/index.php">
               <i class="pe-7s-note2"></i>
               <p>Pengembalian</p>
+            </a>
+          </li>
+          <li>
+            <a href="profile.php">
+              <i class="pe-7s-user"></i>
+              <p>My Profile</p>
+            </a>
+          </li>
+          <li>
+            <a href="ganti_password.php">
+              <i class="pe-7s-key"></i>
+              <p>Ganti Password</p>
             </a>
           </li>
         </ul>

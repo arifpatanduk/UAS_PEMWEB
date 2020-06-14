@@ -1,22 +1,10 @@
 <?php
 session_start();
-/*
-if( $_SESSION['akses'] == 'guru' or 'cso' or 'he')
-{
-    $lokasi = $_SESSION['lokasi'];
-    $id     = $_SESSION['id'];
-    $email  = $_SESSION['email'];
-}
-else
-{
-    header('location:../'.$_SESSION['akses'].'/');
-}
-*/
 
-if (!isset($_SESSION["login"])) {
-    header("Location: ../../login/login.php");
-    exit;
+if($_SESSION["role"] != 'admin') {
+  header("Location: ../homepage/login/");
 }
+
 
 require "../koneksi.php";
 
@@ -68,8 +56,14 @@ $databuku = mysqli_query($conn, "SELECT * FROM buku INNER JOIN rak ON buku.idbuk
                         </a>
                     </li>
                     <li>
+                        <a href="../petugas/index.php">
+                          <i class="pe-7s-users"></i>
+                          <p>Petugas</p>
+                        </a>
+                    </li>
+                    <li>
                         <a href="../anggota/index.php">
-                            <i class="pe-7s-user"></i>
+                            <i class="pe-7s-users"></i>
                             <p>Anggota</p>
                         </a>
                     </li>
@@ -89,6 +83,18 @@ $databuku = mysqli_query($conn, "SELECT * FROM buku INNER JOIN rak ON buku.idbuk
                         <a href="../kembali/index.php">
                             <i class="pe-7s-note2"></i>
                             <p>Pengembalian</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../profile.php">
+                          <i class="pe-7s-user"></i>
+                          <p>My Profile</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../ganti_password.php">
+                          <i class="pe-7s-key"></i>
+                          <p>Ganti Password</p>
                         </a>
                     </li>
                 </ul>
@@ -147,7 +153,7 @@ $databuku = mysqli_query($conn, "SELECT * FROM buku INNER JOIN rak ON buku.idbuk
                                             <?php while ($row = mysqli_fetch_assoc($databuku)) : ?>
                                                 <tr>
                                                     <td><?= $row['idbuku']; ?></td>
-                                                    <td><img src="../image/<?= $row['gambar']; ?>" width="50" height="50"></td>
+                                                    <td><img src="../../image/<?= $row['gambar']; ?>" width="50" height="50"></td>
                                                     <td><?= $row['judulbuku']; ?></td>
                                                     <td><?= $row['kategori']; ?></td>
                                                     <td><?= $row['penulis']; ?></td>

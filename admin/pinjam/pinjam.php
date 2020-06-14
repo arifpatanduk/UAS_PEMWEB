@@ -1,17 +1,4 @@
 <?php
-session_start();
-/*
-if( $_SESSION['akses'] == 'guru' or 'cso' or 'he')
-{
-    $lokasi = $_SESSION['lokasi'];
-    $id     = $_SESSION['id'];
-    $email  = $_SESSION['email'];
-}
-else
-{
-    header('location:../'.$_SESSION['akses'].'/');
-}
-*/
 
 require "../koneksi.php";
 require "function.php";
@@ -87,8 +74,14 @@ if (isset($_POST['submit'])) {
                     </a>
                 </li>
                 <li>
+                    <a href="../petugas/index.php">
+                      <i class="pe-7s-users"></i>
+                      <p>Petugas</p>
+                    </a>
+                </li>
+                <li>
                     <a href="../anggota/index.php">
-                        <i class="pe-7s-user"></i>
+                        <i class="pe-7s-users"></i>
                         <p>Anggota</p>
                     </a>
                 </li>
@@ -108,6 +101,18 @@ if (isset($_POST['submit'])) {
                     <a href="../kembali/index.php">
                         <i class="pe-7s-note2"></i>
                         <p>Pengembalian</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="../profile.php">
+                      <i class="pe-7s-user"></i>
+                      <p>My Profile</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="../ganti_password.php">
+                      <i class="pe-7s-key"></i>
+                      <p>Ganti Password</p>
                     </a>
                 </li>
             </ul>
@@ -144,7 +149,7 @@ if (isset($_POST['submit'])) {
                               </ul>
                         </li>   
                         <li>
-                            <a href="include/logout.php">
+                            <a href="../logout.php">
                                 <p>Log out</p>
                             </a>
                         </li>
