@@ -5,5 +5,5 @@ $_SESSION = [];
 session_unset();
 session_destroy();
 
-header("Location: ../homepage/index.php");
+header("Location: ../homepage/");
 exit;

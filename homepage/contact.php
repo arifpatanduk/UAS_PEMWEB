@@ -44,7 +44,7 @@ if (isset($_POST['kirim'])) {
                 <a class="nav-item nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
                 <a class="nav-item nav-link" href="books.php">Books</a>
                 <a class="nav-item nav-link active" href="contact.php">Contact Us</a>
-                <a class="nav-item nav-link" href="login/login.html">Login</a>
+                <a class="nav-item nav-link" href="../login/login.php">Login</a>
             </div>
         </div>
     </nav>

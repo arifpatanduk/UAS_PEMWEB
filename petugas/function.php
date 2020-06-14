@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-if($_SESSION["role"] != 'petugas') {
-  header("Location: ../homepage/login/");
+if ($_SESSION["role"] != 'petugas') {
+    header("Location: ../login/login.php");
 }
 
 require "koneksi.php";

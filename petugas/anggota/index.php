@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-if($_SESSION["role"] != 'petugas') {
-  header("Location: ../homepage/login/");
+if ($_SESSION["role"] != 'petugas') {
+    header("Location: ../homepage/login/");
 }
 
 require "../koneksi.php";
@@ -18,7 +18,8 @@ $dataanggota = mysqli_query($conn, "SELECT * FROM anggota");
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/">
     <link rel="icon" type="image/png" href="../assets/img/favicon.ico">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>Perpustakaan</title>
+    <title>Daftar Anggota | INIPerpus</title>
+    <link rel="icon" type="image/png" href="../../logo.png">
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <!--     Fonts and icons     -->
     <link rel="stylesheet" href="../assets/css/Pretty-Registration-Form.css">
@@ -44,9 +45,7 @@ $dataanggota = mysqli_query($conn, "SELECT * FROM anggota");
 
             <div class="sidebar-wrapper">
                 <div class="logo">
-                    <a href="#" class="simple-text">
-                        ADMIN PERPUSTAKAAN
-                    </a>
+                    <a class="simple-text" href="index.php"><img src="../../logo.png" alt="" width="40"> INIPerpus</a>
                 </div>
                 <ul class="nav">
                     <li>
@@ -80,17 +79,17 @@ $dataanggota = mysqli_query($conn, "SELECT * FROM anggota");
                         </a>
                     </li>
                     <li>
-                    <a href="../profile.php">
-                      <i class="pe-7s-user"></i>
-                      <p>My Profile</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="../ganti_password.php">
-                      <i class="pe-7s-key"></i>
-                      <p>Ganti Password</p>
-                    </a>
-                </li>
+                        <a href="../profile.php">
+                            <i class="pe-7s-user"></i>
+                            <p>My Profile</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../ganti_password.php">
+                            <i class="pe-7s-key"></i>
+                            <p>Ganti Password</p>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>

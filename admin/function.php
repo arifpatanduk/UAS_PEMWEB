@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-if($_SESSION["role"] != 'admin') {
-  header("Location: ../homepage/login/");
+if ($_SESSION["role"] != 'admin') {
+    header("Location: ../login/login.php");
 }
 
 require "koneksi.php";

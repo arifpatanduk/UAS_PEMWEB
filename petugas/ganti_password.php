@@ -5,16 +5,16 @@ require "koneksi.php";
 $id =  $_SESSION["id"];;
 
 if (isset($_POST['submit'])) {
-    if (update_pass($_POST) > 0) {
-        echo "
+  if (update_pass($_POST) > 0) {
+    echo "
         <script>alert('Update Password berhasil');
         document.location.href='ganti_password.php';
         </script>";
-    } else {
-        echo "
+  } else {
+    echo "
         <script>Gagal</script>";
-        exit;
-    }
+    exit;
+  }
 }
 
 ?>
@@ -26,7 +26,8 @@ if (isset($_POST['submit'])) {
   <link rel="apple-touch-icon" sizes="76x76" href="assets/img/">
   <link rel="icon" type="image/png" href="assets/img/favicon.ico">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <title>Perpustakaan</title>
+  <title>Ganti Password | INIPerpus</title>
+  <link rel="icon" type="image/png" href="../logo.png">
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
   <link rel="stylesheet" href="assets/css/Pretty-Registration-Form.css">
@@ -52,9 +53,7 @@ if (isset($_POST['submit'])) {
 
       <div class="sidebar-wrapper">
         <div class="logo">
-          <a href="#" class="simple-text">
-            ADMIN PERPUSTAKAAN
-          </a>
+          <a class="simple-text" href="index.php"><img src="../logo.png" alt="" width="40"> INIPerpus</a>
         </div>
         <ul class="nav">
           <li>
@@ -130,35 +129,35 @@ if (isset($_POST['submit'])) {
 
       <div class="content">
         <div class="row register-form" style="margin-top:-50px;">
-        <form class="form-horizontal custom-form" action="" method="post">
-        <h1>Ganti Password</h1>
+          <form class="form-horizontal custom-form" action="" method="post">
+            <h1>Ganti Password</h1>
             <div class="form-group">
-                <div class="col-sm-4 label-column">
-                    <label class="control-label" for="name-input-field">Password Lama</label>
-                </div>
-                <div class="col-sm-6 input-column">
-                    <input type="password" class="form-control" name="password_lama" placeholder="Masukkan Password Lama" required>
-                </div>
-            </div>   
-            <div class="form-group">
-                <div class="col-sm-4 label-column">
-                    <label class="control-label" for="name-input-field">Password Baru</label>
-                </div>
-                <div class="col-sm-6 input-column">
-                    <input type="password" class="form-control" name="password_baru" placeholder="Masukkan Password Baru" required>
-                </div>
-            </div> 
-            <div class="form-group">
-                <div class="col-sm-4 label-column">
-                    <label class="control-label" for="name-input-field">Konfirmasi Password Baru</label>
-                </div>
-                <div class="col-sm-6 input-column">
-                    <input type="password" class="form-control" name="konfirmasi" placeholder="Konfirmasi Password Baru" required>
-                </div>
+              <div class="col-sm-4 label-column">
+                <label class="control-label" for="name-input-field">Password Lama</label>
+              </div>
+              <div class="col-sm-6 input-column">
+                <input type="password" class="form-control" name="password_lama" placeholder="Masukkan Password Lama" required>
+              </div>
             </div>
-            <button class="btn btn-default submit-button" type="submit" name="submit" id="yes">Update Password</button>         
-        </form>
-    </div>
+            <div class="form-group">
+              <div class="col-sm-4 label-column">
+                <label class="control-label" for="name-input-field">Password Baru</label>
+              </div>
+              <div class="col-sm-6 input-column">
+                <input type="password" class="form-control" name="password_baru" placeholder="Masukkan Password Baru" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-4 label-column">
+                <label class="control-label" for="name-input-field">Konfirmasi Password Baru</label>
+              </div>
+              <div class="col-sm-6 input-column">
+                <input type="password" class="form-control" name="konfirmasi" placeholder="Konfirmasi Password Baru" required>
+              </div>
+            </div>
+            <button class="btn btn-default submit-button" type="submit" name="submit" id="yes">Update Password</button>
+          </form>
+        </div>
       </div>
 
       <footer class="footer" style="margin-top:0px;">

@@ -7,16 +7,16 @@ $id =  $_SESSION["id"];;
 $datapetugas = mysqli_query($conn, "SELECT * FROM petugas WHERE id_petugas = '$id' ");
 
 if (isset($_POST['submit'])) {
-    if (update($_POST) > 0) {
-        echo "
+  if (update($_POST) > 0) {
+    echo "
         <script>alert('Update Profile berhasil');
         document.location.href='profile.php';
         </script>";
-    } else {
-        echo "
+  } else {
+    echo "
         <script>Gagal</script>";
-        exit;
-    }
+    exit;
+  }
 }
 
 ?>
@@ -28,7 +28,8 @@ if (isset($_POST['submit'])) {
   <link rel="apple-touch-icon" sizes="76x76" href="assets/img/">
   <link rel="icon" type="image/png" href="assets/img/favicon.ico">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <title>Perpustakaan</title>
+  <title>Profile | INIPerpus</title>
+  <link rel="icon" type="image/png" href="../logo.png">
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
   <link rel="stylesheet" href="assets/css/Pretty-Registration-Form.css">
@@ -54,9 +55,7 @@ if (isset($_POST['submit'])) {
 
       <div class="sidebar-wrapper">
         <div class="logo">
-          <a href="#" class="simple-text">
-            ADMIN PERPUSTAKAAN
-          </a>
+          <a class="simple-text" href="index.php"><img src="../logo.png" alt="" width="40"> INIPerpus</a>
         </div>
         <ul class="nav">
           <li>
@@ -138,45 +137,45 @@ if (isset($_POST['submit'])) {
 
       <div class="content">
         <div class="row register-form" style="margin-top:-50px;">
-        <form class="form-horizontal custom-form" action="" method="post">
-          <?php while ($row = mysqli_fetch_assoc($datapetugas)) : ?>
-        <h1>My Profile</h1>
-            <div class="form-group">
+          <form class="form-horizontal custom-form" action="" method="post">
+            <?php while ($row = mysqli_fetch_assoc($datapetugas)) : ?>
+              <h1>My Profile</h1>
+              <div class="form-group">
                 <div class="col-sm-4 label-column">
-                    <label class="control-label" for="name-input-field">Nama Petugas</label>
+                  <label class="control-label" for="name-input-field">Nama Petugas</label>
                 </div>
                 <div class="col-sm-6 input-column">
-                    <input type="text" class="form-control" value="<?= $row['nama_petugas']; ?>" name="nama" placeholder="Masukkan Nama" required>
+                  <input type="text" class="form-control" value="<?= $row['nama_petugas']; ?>" name="nama" placeholder="Masukkan Nama" required>
                 </div>
-            </div>   
-            <div class="form-group">
+              </div>
+              <div class="form-group">
                 <div class="col-sm-4 label-column">
-                    <label class="control-label" for="name-input-field">Username</label>
+                  <label class="control-label" for="name-input-field">Username</label>
                 </div>
                 <div class="col-sm-6 input-column">
-                    <input type="text" class="form-control" value="<?= $row['username']; ?>" name="username" placeholder="Masukkan Username" required>
+                  <input type="text" class="form-control" value="<?= $row['username']; ?>" name="username" placeholder="Masukkan Username" required>
                 </div>
-            </div> 
-            <div class="form-group">
+              </div>
+              <div class="form-group">
                 <div class="col-sm-4 label-column">
-                    <label class="control-label" for="name-input-field">Nomor Telepon</label>
+                  <label class="control-label" for="name-input-field">Nomor Telepon</label>
                 </div>
                 <div class="col-sm-6 input-column">
-                    <input type="text" class="form-control" value="<?= $row['no_telp_petugas']; ?>" name="nomortelp" placeholder="Masukkan Nomor Telepon" required>
+                  <input type="text" class="form-control" value="<?= $row['no_telp_petugas']; ?>" name="nomortelp" placeholder="Masukkan Nomor Telepon" required>
                 </div>
-            </div>
-            <div class="form-group">
+              </div>
+              <div class="form-group">
                 <div class="col-sm-4 label-column">
-                    <label class="control-label" for="name-input-field">Alamat</label>
+                  <label class="control-label" for="name-input-field">Alamat</label>
                 </div>
                 <div class="col-sm-6 input-column">
-                    <input type="text" class="form-control" value="<?= $row['alamat_petugas']; ?>" name="alamat" placeholder="Masukkan Alamat" required>
+                  <input type="text" class="form-control" value="<?= $row['alamat_petugas']; ?>" name="alamat" placeholder="Masukkan Alamat" required>
                 </div>
-            </div>
+              </div>
             <?php endwhile; ?>
-            <button class="btn btn-default submit-button" type="submit" name="submit" id="yes">Update My Profile</button>         
-        </form>
-    </div>
+            <button class="btn btn-default submit-button" type="submit" name="submit" id="yes">Update My Profile</button>
+          </form>
+        </div>
       </div>
 
       <footer class="footer" style="margin-top:0px;">
