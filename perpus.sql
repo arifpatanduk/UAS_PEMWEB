@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 13, 2020 at 10:33 AM
+-- Generation Time: Jun 14, 2020 at 11:25 AM
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -80,7 +80,8 @@ INSERT INTO `buku` (`idbuku`, `judulbuku`, `kategori`, `penulis`, `penerbit`, `s
 ('BK011', 'Kumpulan Cerpen 3', 'Karya Sastra', 'Rudi', 'Media Baca', 4, 'default.png'),
 ('BK012', 'Teknologi Informasi', 'Ilmu Komputer', 'Andi A', 'Media Baca', 6, 'default.png'),
 ('BK013', 'Dermaga Biru', 'Karya Sastra', 'Sutejo', 'Media Cipta', 7, 'default.png'),
-('BK014', 'Ini judul', 'Ilmu Komputer', 'Penulis', 'Penerbit', 4, 'default.png');
+('BK014', 'Ini judul', 'Ilmu Komputer', 'Penulis', 'Penerbit', 4, 'default.png'),
+('BK015', 'Ini judul2', 'Karya Sastra', 'Penulis', 'Penerbit', 2, '388887.png');
 
 -- --------------------------------------------------------
 
@@ -123,7 +124,7 @@ CREATE TABLE IF NOT EXISTS `pengembalian` (
   `idbuku` varchar(5) NOT NULL,
   `id_anggota` int(11) NOT NULL,
   `id_petugas` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pengembalian`
@@ -145,17 +146,20 @@ INSERT INTO `pengembalian` (`id_pengembalian`, `tanggal_pinjam`, `jatuh_tempo`, 
 CREATE TABLE IF NOT EXISTS `petugas` (
   `id_petugas` int(11) NOT NULL,
   `nama_petugas` varchar(50) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL,
   `jabatan_petugas` varchar(50) NOT NULL,
-  `no_telp_petugas` char(13) NOT NULL,
+  `no_telp_petugas` varchar(13) NOT NULL,
   `alamat_petugas` varchar(100) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `petugas`
 --
 
-INSERT INTO `petugas` (`id_petugas`, `nama_petugas`, `jabatan_petugas`, `no_telp_petugas`, `alamat_petugas`) VALUES
-(1, 'wiranata', 'admin', '123', 'makassar');
+INSERT INTO `petugas` (`id_petugas`, `nama_petugas`, `username`, `password`, `jabatan_petugas`, `no_telp_petugas`, `alamat_petugas`) VALUES
+(1, 'admin', 'admin', '827ccb0eea8a706c4c34a16891f84e7b', 'admin', '12345', 'Pabelan'),
+(2, 'bintang', 'bintang', '827ccb0eea8a706c4c34a16891f84e7b', 'petugas', '085123321456', 'Surakarta');
 
 -- --------------------------------------------------------
 
@@ -168,7 +172,7 @@ CREATE TABLE IF NOT EXISTS `rak` (
   `nama_rak` varchar(50) NOT NULL,
   `lokasi_rak` varchar(50) NOT NULL,
   `idbuku` varchar(5) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `rak`
@@ -188,7 +192,8 @@ INSERT INTO `rak` (`id_rak`, `nama_rak`, `lokasi_rak`, `idbuku`) VALUES
 (11, 'DEF', 'Lantai 2', 'BK011'),
 (12, 'GHI', 'Lantai 2', 'BK012'),
 (13, 'JKL', 'Lantai 2', 'BK013'),
-(14, 'abc1', 'lantai 1', 'BK014');
+(14, 'abc1', 'lantai 1', 'BK014'),
+(15, 'ABC', 'lantai 2', 'BK015');
 
 --
 -- Indexes for dumped tables
@@ -248,17 +253,17 @@ ALTER TABLE `peminjaman`
 -- AUTO_INCREMENT for table `pengembalian`
 --
 ALTER TABLE `pengembalian`
-  MODIFY `id_pengembalian` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+  MODIFY `id_pengembalian` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `petugas`
 --
 ALTER TABLE `petugas`
-  MODIFY `id_petugas` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id_petugas` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `rak`
 --
 ALTER TABLE `rak`
-  MODIFY `id_rak` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
+  MODIFY `id_rak` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
 --
 -- Constraints for dumped tables
 --

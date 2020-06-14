@@ -1,17 +1,4 @@
 <?php
-session_start();
-/*
-if( $_SESSION['akses'] == 'guru' or 'cso' or 'he')
-{
-    $lokasi = $_SESSION['lokasi'];
-    $id     = $_SESSION['id'];
-    $email  = $_SESSION['email'];
-}
-else
-{
-    header('location:../'.$_SESSION['akses'].'/');
-}
-*/
 
 require "../koneksi.php";
 require "function.php";
@@ -71,117 +58,129 @@ if (isset($_POST['submit'])) {
 
 </head>
 
-<body>
-    <div class="wrapper">
-        <div class="sidebar" data-color="azure" data-image="../assets/img/sidebar-5.jpg">
+<div class="sidebar-wrapper">
+    <div class="logo">
+        <a href="#" class="simple-text">
+            ADMIN PERPUSTAKAAN
+        </a>
+    </div>
+    <ul class="nav">
+        <li>
+            <a href="../index.php">
+                <i class="pe-7s-graph"></i>
+                <p>Dashboard</p>
+            </a>
+        </li>
+        <li>
+            <a href="../petugas/index.php">
+                <i class="pe-7s-users"></i>
+                <p>Petugas</p>
+            </a>
+        </li>
+        <li>
+            <a href="../anggota/index.php">
+                <i class="pe-7s-users"></i>
+                <p>Anggota</p>
+            </a>
+        </li>
+        <li>
+            <a href="../buku/index.php">
+                <i class="pe-7s-notebook"></i>
+                <p>Buku</p>
+            </a>
+        </li>
+        <li class="active">
+            <a href="index.php">
+                <i class="pe-7s-note2"></i>
+                <p>Peminjaman</p>
+            </a>
+        </li>
+        <li>
+            <a href="../kembali/index.php">
+                <i class="pe-7s-note2"></i>
+                <p>Pengembalian</p>
+            </a>
+        </li>
+        <li>
+            <a href="../profile.php">
+                <i class="pe-7s-user"></i>
+                <p>My Profile</p>
+            </a>
+        </li>
+        <li>
+            <a href="../ganti_password.php">
+                <i class="pe-7s-key"></i>
+                <p>Ganti Password</p>
+            </a>
+        </li>
+    </ul>
+</div>
 
-            <div class="sidebar-wrapper">
-                <div class="logo">
-                    <a href="#" class="simple-text">
-                        ADMIN PERPUSTAKAAN
-                    </a>
-                </div>
-                <ul class="nav">
-                    <li>
-                        <a href="../index.php">
-                            <i class="pe-7s-graph"></i>
-                            <p>Dashboard</p>
+<div class="main-panel">
+    <nav class="navbar navbar-default navbar-fixed">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Peminjaman</a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-left">
+
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <p>
+                                Menu
+                                <b class="caret"></b>
+                            </p>
                         </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="index.php">Transaksi Peminjaman</a></li>
+                            <li class="active"><a href="pinjam.php">Daftar Peminjaman</a></li>
+                        </ul>
                     </li>
                     <li>
-                        <a href="../anggota/index.php">
-                            <i class="pe-7s-user"></i>
-                            <p>Anggota</p>
+                        <a href="../logout.php">
+                            <p>Log out</p>
                         </a>
                     </li>
-                    <li>
-                        <a href="../buku/index.php">
-                            <i class="pe-7s-notebook"></i>
-                            <p>Buku</p>
-                        </a>
-                    </li>
-                    <li class="active">
-                        <a href="index.php">
-                            <i class="pe-7s-note2"></i>
-                            <p>Peminjaman</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="../kembali/index.php">
-                            <i class="pe-7s-note2"></i>
-                            <p>Pengembalian</p>
-                        </a>
-                    </li>
+
+                    <li class="separator hidden-lg hidden-md"></li>
                 </ul>
             </div>
-        </div>
+    </nav>
 
-        <div class="main-panel">
-            <nav class="navbar navbar-default navbar-fixed">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="#">Peminjaman</a>
-                    </div>
-                    <div class="collapse navbar-collapse">
-                        <ul class="nav navbar-nav navbar-left">
-
-                        </ul>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <p>
-                                        Menu
-                                        <b class="caret"></b>
-                                    </p>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="index.php">Transaksi Peminjaman</a></li>
-                                    <li class="active"><a href="pinjam.php">Daftar Peminjaman</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="include/logout.php">
-                                    <p>Log out</p>
-                                </a>
-                            </li>
-
-                            <li class="separator hidden-lg hidden-md"></li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-
-            <div class="content">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="card">
-                                <div class="header">
-                                    <h4 class="title">Daftar Peminjaman</h4>
-                                    <p class="category">Berikut adalah daftar peminjaman perpustakaan</p>
-                                </div>
-                                <div class="content table-responsive">
-                                    <table id="tabel-data" class="table table-striped table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th>No. Pinjam</th>
-                                                <th>Nama Anggota</th>
-                                                <th>Judul Buku</th>
-                                                <th>Tanggal Pinjam</th>
-                                                <th>Jatuh Tempo</th>
-                                                <th>Aksi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php
-                                            while ($row = mysqli_fetch_array($datapinjam)) {
-                                                echo "<tr>
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="header">
+                            <h4 class="title">Daftar Peminjaman</h4>
+                            <p class="category">Berikut adalah daftar peminjaman perpustakaan</p>
+                        </div>
+                        <div class="content table-responsive">
+                            <table id="tabel-data" class="table table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>No. Pinjam</th>
+                                        <th>Nama Anggota</th>
+                                        <th>Judul Buku</th>
+                                        <th>Tanggal Pinjam</th>
+                                        <th>Jatuh Tempo</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    while ($row = mysqli_fetch_array($datapinjam)) {
+                                        echo "<tr>
                                             <td>" . $row['id_peminjaman'] . "</td>
                                             <td>" . $row['nama_anggota'] . "</td>
                                             <td>" . $row['judulbuku'] . "</td>
@@ -196,36 +195,36 @@ if (isset($_POST['submit'])) {
                                                 </a>
                                             </td>
                                         </tr>";
-                                            }
-                                            ?>
-                                        </tbody>
+                                    }
+                                    ?>
+                                </tbody>
 
-                                        <script>
-                                            $(document).ready(function() {
-                                                $('#tabel-data').DataTable();
-                                            });
-                                        </script>
+                                <script>
+                                    $(document).ready(function() {
+                                        $('#tabel-data').DataTable();
+                                    });
+                                </script>
 
-                                    </table>
+                            </table>
 
-                                </div>
-                            </div>
                         </div>
-
                     </div>
                 </div>
+
             </div>
-            <footer class="footer" style="margin-top:0px;">
-                <div class="container-fluid">
-                    <p class="copyright pull-right">
-                        &copy; <script>
-                            document.write(new Date().getFullYear())
-                        </script> Dibuat oleh Mahasiswa PTIK
-                    </p>
-                </div>
-            </footer>
         </div>
     </div>
+    <footer class="footer" style="margin-top:0px;">
+        <div class="container-fluid">
+            <p class="copyright pull-right">
+                &copy; <script>
+                    document.write(new Date().getFullYear())
+                </script> Dibuat oleh Mahasiswa PTIK
+            </p>
+        </div>
+    </footer>
+</div>
+</div>
 </body>
 
 <!--   Core JS Files   -->

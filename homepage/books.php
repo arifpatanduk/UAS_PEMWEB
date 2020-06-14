@@ -104,7 +104,7 @@ if (isset($_POST['cari'])) {
                                         </div>
                                     <?php endif; ?>
 
-                                    <img src="../admin/image/<?= $row['gambar']; ?>" class="card-img-top rounded-lg" alt="cover.jpg" height="425" />
+                                    <img src="../image/<?= $row['gambar']; ?>" class="card-img-top rounded-lg" alt="cover.jpg" height="425" />
                                     <div class="card-body">
                                         <h5 class="card-title"><?= $row['judulbuku']; ?></h5>
                                         <p class="card-text"><?= $row['penulis']; ?></p>

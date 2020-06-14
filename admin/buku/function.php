@@ -1,4 +1,10 @@
 <?php
+session_start();
+
+if($_SESSION["role"] != 'admin') {
+  header("Location: ../homepage/login/");
+}
+
 
 require "../koneksi.php";
 
@@ -22,7 +28,7 @@ function tambah($data)
     //upload image                  
     if($imgFile)
     {
-        $upload_dir = '../image/'; // upload directory 
+        $upload_dir = '../../image/'; // upload directory 
         $imgExt = strtolower(pathinfo($imgFile,PATHINFO_EXTENSION)); // get image extension
         $valid_extensions = array('jpeg', 'jpg', 'png', 'gif'); // valid extensions
         $gambar = rand(1000,1000000).".".$imgExt;
@@ -87,7 +93,7 @@ function update($data)
     //upload image                   
     if($imgFile)
     {
-        $upload_dir = '../image/'; // upload directory 
+        $upload_dir = '../../image/'; // upload directory 
         $imgExt = strtolower(pathinfo($imgFile,PATHINFO_EXTENSION)); // get image extension
         $valid_extensions = array('jpeg', 'jpg', 'png', 'gif'); // valid extensions
         $gambar = rand(1000,1000000).".".$imgExt;

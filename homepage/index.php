@@ -105,7 +105,7 @@ $result = mysqli_query($conn, "SELECT * FROM buku ORDER BY idbuku DESC LIMIT 3")
                     </div>
                   <?php endif; ?>
 
-                  <img src="../admin/image/<?= $row['gambar']; ?>" class="card-img-top rounded-lg" alt="cover.jpg" height="450" />
+                  <img src="../image/<?= $row['gambar']; ?>" class="card-img-top rounded-lg" alt="cover.jpg" height="450" />
                   <div class="card-body">
                     <h5 class="card-title"><?= $row['judulbuku']; ?></h5>
                     <p class="card-text"><?= $row['penulis']; ?></p>

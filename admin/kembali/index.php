@@ -1,11 +1,4 @@
 <?php
-session_start();
-
-if (!isset($_SESSION["login"])) {
-    header("Location: ../../login/login.php");
-    exit;
-}
-
 require "../koneksi.php";
 require "../pinjam/function.php";
 
@@ -64,8 +57,14 @@ $datakembali = mysqli_query(
                         </a>
                     </li>
                     <li>
+                        <a href="../petugas/index.php">
+                          <i class="pe-7s-users"></i>
+                          <p>Petugas</p>
+                        </a>
+                    </li>
+                    <li>
                         <a href="../anggota/index.php">
-                            <i class="pe-7s-user"></i>
+                            <i class="pe-7s-users"></i>
                             <p>Anggota</p>
                         </a>
                     </li>
@@ -85,6 +84,18 @@ $datakembali = mysqli_query(
                         <a href="index.php">
                             <i class="pe-7s-note2"></i>
                             <p>Pengembalian</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../profile.php">
+                          <i class="pe-7s-user"></i>
+                          <p>My Profile</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../ganti_password.php">
+                          <i class="pe-7s-key"></i>
+                          <p>Ganti Password</p>
                         </a>
                     </li>
                 </ul>

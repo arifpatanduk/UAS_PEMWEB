@@ -1,4 +1,11 @@
 <?php
+
+	session_start();
+
+	if($_SESSION["role"] != 'admin') {
+	  header("Location: ../homepage/login/");
+	}
+
 	include "../koneksi.php";
 	$id = $_GET['id'];
 	$del_rak = "DELETE FROM rak WHERE idbuku = '$id' ";

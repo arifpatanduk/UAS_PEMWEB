@@ -1,9 +1,8 @@
 <?php
 session_start();
 
-if (!isset($_SESSION["login"])) {
-    header("Location: ../../login/login.php");
-    exit;
+if($_SESSION["role"] != 'admin') {
+  header("Location: ../homepage/login/");
 }
 
 require "../koneksi.php";
@@ -56,9 +55,15 @@ $dataanggota = mysqli_query($conn, "SELECT * FROM anggota");
                             <p>Dashboard</p>
                         </a>
                     </li>
+                    <li>
+                        <a href="../petugas/index.php">
+                          <i class="pe-7s-users"></i>
+                          <p>Petugas</p>
+                        </a>
+                    </li>
                     <li class="active">
                         <a href="index.php">
-                            <i class="pe-7s-user"></i>
+                            <i class="pe-7s-users"></i>
                             <p>Anggota</p>
                         </a>
                     </li>
@@ -80,6 +85,18 @@ $dataanggota = mysqli_query($conn, "SELECT * FROM anggota");
                             <p>Pengembalian</p>
                         </a>
                     </li>
+                    <li>
+                    <a href="../profile.php">
+                      <i class="pe-7s-user"></i>
+                      <p>My Profile</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="../ganti_password.php">
+                      <i class="pe-7s-key"></i>
+                      <p>Ganti Password</p>
+                    </a>
+                </li>
                 </ul>
             </div>
         </div>
