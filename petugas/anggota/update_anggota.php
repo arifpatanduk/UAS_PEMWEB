@@ -15,8 +15,9 @@ if (isset($_POST['submit'])) {
         </script>";
     } else {
         echo "
-        <script>Gagal</script>";
-        exit;
+        <script>alert('Tidak ada data yang diubah');
+        document.location.href='index.php';
+        </script>";
     }
 }
 ?>

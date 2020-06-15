@@ -9,7 +9,7 @@ if (perpanjang($id_peminjaman) > 0) {
     echo "
     <script>
     alert('Peminjaman berhasil diperpanjang');
-    document.location.href='index.php';
+    document.location.href='pinjam.php';
     </script>";
 } else {
     echo "
